@@ -25,3 +25,9 @@ express, jsonwebtoken, mongoose, multer, nodemailer, razorpay
 npm i -D "nodemon" --> automatically starts after saving code
 
 now making mvc architecture -> model view controller
+creating folders -- config, controller, middleware
+
+index.js -> starting express backend server
+
+now testing on postman
+
