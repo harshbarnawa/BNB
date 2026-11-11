@@ -1,0 +1,27 @@
+For db setup -- downloading
+mongodb community server - mongodb service + data store
+mongodb compass - To manage db visually with gui
+mongodb shell (mongosh) - To interact db with terminal
+
+Postman for backend and api testing
+
+starting point - backend
+npm init
+adding dependancies ->
+bcrypt - password hashing
+cloudinary - images and media
+cors - proper connection of frontend to backend api'server
+dotenv - env variable store
+express - backend api's 
+jsonwebtoken - for key saving user login auth
+mongoose - db connection
+multer - is middleware local file to block/text to cloudinary
+nodemailer - mails and otp
+razorpay - payment section
+
+npm install bcryptjs, cloudinary, cors, dotenv, 
+express, jsonwebtoken, mongoose, multer, nodemailer, razorpay
+
+npm i -D "nodemon" --> automatically starts after saving code
+
+now making mvc architecture -> model view controller
