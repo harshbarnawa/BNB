@@ -31,3 +31,20 @@ index.js -> starting express backend server
 
 now testing on postman
 
+db connection using mongoose and compass
+
+
+
+
+Now user schema model --
+index.js -- app.use('/api/auth', require('./routes/authRoutes'));
+authroutes -> authControllers
+schema defined
+
+controllers -> register user func
+
+
+// TODO
+// Hash the password before saving the user
+// JWT token generation for authentication
+// OTP sending logic can be added here for email verification
