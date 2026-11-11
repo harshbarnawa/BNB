@@ -48,3 +48,14 @@ controllers -> register user func
 // Hash the password before saving the user
 // JWT token generation for authentication
 // OTP sending logic can be added here for email verification
+
+
+created routes controllers models 
+
+mostly things i wrote in git commits
+
+currently writing code for product routes and controller made its model
+using multer and config cloudinary
+
+After so much of debugging my cloudinary works
+product added and showing in database through postman
