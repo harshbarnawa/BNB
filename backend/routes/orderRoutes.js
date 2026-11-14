@@ -1,5 +1,5 @@
 const express = require("express");
-const { protect } = require("../middleware/authMIddleware.js");
+const { protect } = require("../middleware/authMiddleware.js");
 const { admin } = require("../middleware/adminMiddleware.js");
 const { createOrder, getOrders, myOrders, updateOrderStatus } = require("../controllers/orderController.js");
 

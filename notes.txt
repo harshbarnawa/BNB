@@ -75,3 +75,7 @@ now creating order controller
 successfully created the order controller with a great email on order confirmation
 
 creating all functions after createorder -> myOrders aur getOrders update wala system..
+
+
+-> Now payment section
+I need a proper payment id from razorpay 
