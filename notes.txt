@@ -73,3 +73,5 @@ Creating order schema in models as Order.js
 now creating order controller
 
 successfully created the order controller with a great email on order confirmation
+
+creating all functions after createorder -> myOrders aur getOrders update wala system..
