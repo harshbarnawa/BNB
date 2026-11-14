@@ -57,11 +57,11 @@ const registerUser = async (req, res) => {
                 "Welcome to BNB!",
                 `Hello ${user.name},
 
-Welcome to Board N Byte!
+                    Welcome to Board N Byte!
 
-Your account has been successfully created.
+                    Your account has been successfully created.
 
-Thank you for joining BNB.`
+                    Thank you for joining BNB.`
             );
         } catch (emailError) {
             console.error("Email Error:", emailError.message);

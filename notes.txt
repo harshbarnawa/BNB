@@ -60,3 +60,16 @@ using multer and config cloudinary
 After so much of debugging my cloudinary works
 product added and showing in database through postman
 u
+
+
+
+
+flow of making any routes
+
+
+creating order route in index.js
+creating order route in routes
+Creating order schema in models as Order.js
+now creating order controller
+
+successfully created the order controller with a great email on order confirmation

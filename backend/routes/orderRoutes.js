@@ -1,0 +1,13 @@
+const express = require("express");
+const { protect } = require("../middleware/authMIddleware.js");
+const { admin } = require("../middleware/adminMiddleware.js");
+const { createOrder, getOrders, getOrderById, updateOrderStatus } = require("../controllers/orderController.js");
+
+const router = express.Router();
+
+router.route("/").post(protect, createOrder).get(protect, admin, getOrders);
+router.route("/myorders").get(protect, getOrderById);
+router.route("/:id/status").put(protect, admin, updateOrderStatus);
+
+
+module.exports = router;
