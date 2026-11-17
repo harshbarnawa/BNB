@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: bnb-enquiries-api
+    runtime: node
+    plan: free
+    branch: main
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: node leadsServer.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_ORIGIN
+        value: https://boardnbyte.vercel.app
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
