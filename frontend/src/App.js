@@ -41,7 +41,7 @@ function App() {
       <div className="announcement">
         <span className="announcement-dot" />
         <span>Good ideas deserve great execution.</span>
-        <a href="#services">LET'S BUILD SOMETHING <ArrowUpRight /></a>
+        <a href="/services">LET'S BUILD SOMETHING <ArrowUpRight /></a>
       </div>
 
       <header className="site-header">
@@ -55,13 +55,13 @@ function App() {
         </button>
 
         <nav className={menuOpen ? 'main-nav nav-open' : 'main-nav'}>
-          <a href="#services" onClick={closeMenu}>Services</a>
+          <a href="/services" onClick={closeMenu}>Services</a>
           <a href="#gallery" onClick={closeMenu}>Design gallery</a>
           <a href="#store" onClick={closeMenu}>Store</a>
           <a href="#about" onClick={closeMenu}>About</a>
         </nav>
 
-        <a className="header-cta" href="#contact">
+        <a className="header-cta" href="/services#brief">
           Start a project <ArrowUpRight />
         </a>
       </header>
@@ -80,7 +80,7 @@ function App() {
           </div>
 
           <div className="hero-panels">
-            <a className="hero-panel panel-services" href="#services">
+            <a className="hero-panel panel-services" href="/services">
               <div className="panel-top"><span>01 / DIGITAL SERVICES</span><span className="panel-arrow"><ArrowUpRight /></span></div>
               <div className="service-art" aria-hidden="true">
                 <div className="art-window">
@@ -114,12 +114,12 @@ function App() {
         <section className="services-section section-wrap" id="services">
           <div className="section-heading">
             <div><div className="eyebrow"><span className="eyebrow-line" /> WHAT WE CAN BUILD</div><h2>Big ideas.<br /><span>Built properly.</span></h2></div>
-            <div className="heading-aside"><p>From a sharp online presence to software that solves real problems, we turn ambitious ideas into useful digital experiences.</p><a className="text-link" href="#contact">Tell us what you're thinking <ArrowRight /></a></div>
+            <div className="heading-aside"><p>From a sharp online presence to software that solves real problems, we turn ambitious ideas into useful digital experiences.</p><a className="text-link" href="/services#brief">Tell us what you're thinking <ArrowRight /></a></div>
           </div>
 
           <div className="service-list">
             {services.map((service) => (
-              <a className="service-row" href="#contact" key={service.number}>
+              <a className="service-row" href={service.number === '01' ? '/services#business' : service.number === '02' ? '/services#commerce' : '/services#custom'} key={service.number}>
                 <span className="service-number">{service.number}</span><div className="service-main"><span className="service-tag">{service.tag}</span><h3>{service.title}</h3><p>{service.description}</p></div><span className="service-icon">{service.icon}</span><span className="service-link"><ArrowUpRight /></span>
               </a>
             ))}
@@ -130,10 +130,10 @@ function App() {
           <div className="section-wrap">
             <div className="section-heading gallery-heading">
               <div><div className="eyebrow"><span className="eyebrow-line" /> THE BNB DESIGN GALLERY</div><h2>See it.<br /><span>Make it yours.</span></h2></div>
-              <div className="heading-aside"><p>Explore different directions for your next website. Real, interactive demos — so you can experience the idea before you make it yours.</p><a className="text-link" href="#contact">Explore all designs <ArrowRight /></a></div>
+              <div className="heading-aside"><p>Explore different directions for your next website. Design directions to spark your next project. Interactive demonstrations are in development.</p><a className="text-link" href="/services#categories">Explore services <ArrowRight /></a></div>
             </div>
             <div className="gallery-grid">
-              {gallery.map((item, index) => <a className="gallery-card" href="#contact" key={item.type}>
+              {gallery.map((item, index) => <a className="gallery-card" href="/services#categories" key={item.type}>
                 <div className={'gallery-preview ' + item.style}>
                   <div className="preview-browser"><span /><span /><span /><i>YOUR BRAND</i></div>
                   {index === 0 && <div className="preview-business"><small>DESIGN WITH PURPOSE</small><b>Built around<br />your business.</b><i>DISCOVER MORE ↗</i></div>}
@@ -143,7 +143,7 @@ function App() {
                 <div className="gallery-card-bottom"><div><span>{item.type} WEBSITE</span><h3>{item.title}</h3></div><span className="circle-arrow"><ArrowUpRight /></span></div>
               </a>)}
             </div>
-            <p className="gallery-note"><span className="status-pulse" /> INTERACTIVE CONCEPTS · MORE CATEGORIES COMING SOON</p>
+            <p className="gallery-note"><span className="status-pulse" /> DESIGN PREVIEWS · INTERACTIVE DEMOS IN DEVELOPMENT</p>
           </div>
         </section>
 
@@ -162,17 +162,17 @@ function App() {
         </section>
 
         <section className="about-band" id="about">
-          <div className="section-wrap about-inner"><div className="eyebrow"><span className="eyebrow-line" /> A LITTLE ABOUT BNB</div><h2>We like making<br />things <span>make sense.</span></h2><div className="about-bottom"><p>BNB brings digital services and useful technology together under one roof. One team, thoughtful work, and a belief that the details matter.</p><a className="button button-light" href="#contact">Let's talk <ArrowUpRight /></a></div><div className="about-stamp">BNB<br /><span>BUILD<br />WHAT'S<br />NEXT</span></div></div>
+          <div className="section-wrap about-inner"><div className="eyebrow"><span className="eyebrow-line" /> A LITTLE ABOUT BNB</div><h2>We like making<br />things <span>make sense.</span></h2><div className="about-bottom"><p>BNB brings digital services and useful technology together under one roof. One team, thoughtful work, and a belief that the details matter.</p><a className="button button-light" href="/services#brief">Plan a project <ArrowUpRight /></a></div><div className="about-stamp">BNB<br /><span>BUILD<br />WHAT'S<br />NEXT</span></div></div>
         </section>
 
         <section className="contact-section section-wrap" id="contact">
           <div><div className="eyebrow"><span className="eyebrow-line" /> HAVE SOMETHING IN MIND?</div><h2>Let's make<br /><span>it happen.</span></h2></div>
-          <div className="contact-right"><p>Have a project to build, a question to ask, or just want to say hello? Our inbox is open.</p><a className="button button-dark" href="#contact">Start a conversation <ArrowUpRight /></a><span>CONTACT DETAILS COMING SOON</span></div>
+          <div className="contact-right"><p>Have a project to build, a question to ask, or just want to say hello? Our inbox is open.</p><a className="button button-dark" href="/services#brief">Prepare a project brief <ArrowUpRight /></a><span>ENQUIRY SUBMISSIONS COMING SOON</span></div>
         </section>
       </main>
 
       <footer className="site-footer">
-        <div className="section-wrap footer-main"><a className="brand footer-brand" href="#home"><span className="brand-mark">B<span>N</span>B</span><span className="brand-name">BOARD N BYTE</span></a><p>Digital ideas. Real-world tech.<br />Built for what's next.</p><div className="footer-links"><a href="#services">Services</a><a href="#gallery">Design gallery</a><a href="#store">Store</a><a href="#contact">Contact</a></div><a className="back-top" href="#home">BACK TO TOP ↑</a></div>
+        <div className="section-wrap footer-main"><a className="brand footer-brand" href="#home"><span className="brand-mark">B<span>N</span>B</span><span className="brand-name">BOARD N BYTE</span></a><p>Digital ideas. Real-world tech.<br />Built for what's next.</p><div className="footer-links"><a href="/services">Services</a><a href="#gallery">Design gallery</a><a href="#store">Store</a><a href="#contact">Contact</a></div><a className="back-top" href="#home">BACK TO TOP ↑</a></div>
         <div className="section-wrap footer-bottom"><span>© {new Date().getFullYear()} BNB — BOARD N BYTE</span><span>MADE WITH INTENTION. <b>✳</b></span><span>INDIA</span></div>
       </footer>
     </div>
