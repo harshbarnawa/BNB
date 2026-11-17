@@ -56,6 +56,7 @@ const createOrder = async (req, res) => {
             status: "processing"
         });
 
+        reservedItems = [];
         await notifyOrder(req.user, order);
 
         return res.status(201).json({
@@ -69,7 +70,7 @@ const createOrder = async (req, res) => {
             });
         }
 
-        const clientError = /provide|valid|available|stock|quantity|shipping|address|items|products|COD/i.test(error.message);
+        const clientError = /provide|valid|available|stock|quantity|shipping|address|items|products|COD|must be/i.test(error.message);
         return res.status(clientError ? 400 : 500).json({
             message: error.message || "Error creating order"
         });
@@ -121,7 +122,10 @@ const updateOrderStatus = async (req, res) => {
         }
 
         if (status === "cancelled") {
-            await releaseStock(order.items);
+            if (order.paymentMethod === "cod" || order.paymentStatus === "paid") {
+                await releaseStock(order.items);
+            }
+
             if (order.paymentStatus === "paid") {
                 order.paymentStatus = "refund_required";
             }
