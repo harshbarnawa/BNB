@@ -79,3 +79,8 @@ creating all functions after createorder -> myOrders aur getOrders update wala s
 
 -> Now payment section
 I need a proper payment id from razorpay 
+
+
+-> Now working on frontend side
+creating react app
+adding redux and react-router-dom
