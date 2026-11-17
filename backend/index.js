@@ -30,7 +30,9 @@ app.use((error, req, res, next) => {
         return next(error);
     }
 
-    const statusCode = error.status || error.statusCode || 500;
+    const isUploadError = error.name === "MulterError" || error.message.startsWith("Only JPEG");
+    const statusCode = isUploadError ? 400 : (error.status || error.statusCode || 500);
+
     return res.status(statusCode).json({
         message: statusCode >= 500 ? "An unexpected server error occurred" : error.message
     });
