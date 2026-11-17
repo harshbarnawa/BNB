@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root{--ink:#111311;--muted:#747a75;--line:#e5e8e4;--mint:#16b98a;--paper:#f7f8f5;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.site-shell{overflow:hidden}
+.announcement{height:32px;padding:0 5.5%;display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:#fff;font:10px 'DM Mono',monospace;letter-spacing:.11em}
+.announcement span{color:#aab2ac;letter-spacing:.04em}
+.site-header{height:82px;padding:0 5.5%;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:11px}
+.brand-mark{font:800 28px 'Manrope',sans-serif;letter-spacing:-.12em}
+.brand-mark span{color:var(--mint)}
+.brand-copy{font:700 10px 'DM Mono',monospace;letter-spacing:.12em}
+.brand-copy small{display:block;margin-top:4px;color:#8b928d;font-size:8px;font-weight:400;letter-spacing:.18em}
+.main-nav{display:flex;gap:34px;color:#535a54;font-size:12px}
+.main-nav a:hover,.text-link:hover{color:var(--mint)}
+.header-cta{padding:12px 17px;border:1px solid var(--ink);border-radius:3px;font-size:12px;font-weight:700}
+.arrow{display:inline-block;margin-left:8px;font-size:16px;line-height:0;transition:transform .2s}
+a:hover .arrow{transform:translate(3px,-3px)}
+.hero{min-height:590px;padding:84px 8% 68px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4%;background:#f4f6f2}
+.eyebrow,.section-kicker{font:10px 'DM Mono',monospace;letter-spacing:.13em;color:#707970}
+.status-dot{display:inline-block;width:7px;height:7px;margin-right:8px;border-radius:50%;background:var(--mint);vertical-align:middle}
+.hero h1{max-width:660px;margin:24px 0 20px;font:700 clamp(42px,5vw,68px)/1.08 'Manrope',sans-serif;letter-spacing:-.065em}
+.hero h1 span,.section-heading h2 em,.about-inner h2 em,.contact-copy h2 em{font-style:normal;color:var(--mint)}
+.hero-description{max-width:440px;color:#626a63;font-size:16px;line-height:1.8}
+.hero-actions{display:flex;align-items:center;gap:26px;margin-top:32px}
+.button{display:inline-flex;align-items:center;padding:16px 20px;border-radius:3px;font-size:12px;font-weight:700}
+.button-dark{background:var(--ink);color:#fff}
+.button-dark:hover{background:var(--mint);color:var(--ink)}
+.text-link{font-size:12px;font-weight:700}
+.hero-footnote{display:flex;gap:26px;margin-top:70px;color:#8b928d;font:9px 'DM Mono',monospace;letter-spacing:.1em}
+.hero-visual{height:420px;position:relative;display:grid;place-items:center;background:#e9eee8;border:1px solid #dce3dc;border-radius:4px;overflow:hidden}
+.visual-orbit{position:absolute;width:310px;height:310px;border:1px solid rgba(22,185,138,.32);border-radius:50%}
+.orbit-two{width:430px;height:430px;border-color:rgba(17,19,17,.08)}
+.visual-core{z-index:1;width:180px;height:180px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111311;color:#fff;box-shadow:0 25px 70px #1b3e3029}
+.visual-core span{font:800 48px 'Manrope';letter-spacing:-.13em}.visual-core small{margin-top:4px;color:#9da79f;font:8px 'DM Mono';letter-spacing:.18em}
+.visual-cross{position:absolute;top:70px;right:23%;color:var(--mint);font-size:30px}
+.floating-card{position:absolute;z-index:2;display:flex;align-items:center;gap:12px;padding:13px 15px;background:#fff;border:1px solid #e4e9e3;box-shadow:0 12px 35px #1a2b2010;border-radius:4px}
+.floating-card b,.floating-card small{display:block}.floating-card b{font-size:12px}.floating-card small{margin-top:4px;color:#8a928b;font-size:9px}
+.mini-icon{width:32px;height:32px;display:grid;place-items:center;background:#e8f8f2;color:#0c9b70;border-radius:3px;font-size:19px}
+.card-digital{top:76px;left:5%}.card-tech{right:4%;bottom:75px}
+.visual-caption{position:absolute;bottom:20px;left:22px;color:#89958b;font:9px 'DM Mono';letter-spacing:.15em}
+.section-wrap{max-width:1320px;margin:0 auto;padding-left:5.5%;padding-right:5.5%}
+.pathways{padding-top:86px;padding-bottom:100px}
+.section-kicker{display:flex;justify-content:space-between;gap:20px}
+.section-kicker span{color:#a0a7a0}
+.path-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+.path-card{min-width:0;padding:20px;background:#fff;border:1px solid var(--line);transition:transform .25s,border-color .25s}
+.path-card:hover{transform:translateY(-4px);border-color:#b9d8ca}
+.path-top{display:flex;justify-content:space-between;font:9px 'DM Mono';letter-spacing:.1em;color:#7c857d}
+.path-art{height:250px;margin-top:18px;position:relative;overflow:hidden;display:grid;place-items:center}
+.art-browser{background:#e9f0ea}.browser-bar{position:absolute;top:20px;left:8%;right:8%;height:23px;background:#fff;border-radius:3px 3px 0 0;display:flex;align-items:center;gap:5px;padding-left:10px}.browser-bar i{width:5px;height:5px;border-radius:50%;background:#b5c1b7}
+.browser-content{width:84%;height:180px;padding:27px 30px;background:#fcfdfb;box-shadow:0 14px 30px #1b2e2010}.browser-content>span{display:block;width:28px;height:3px;background:var(--mint)}.browser-content b{display:block;margin-top:13px;font:700 29px/1.05 'Manrope';letter-spacing:-.06em}.browser-content small{display:block;margin-top:8px;color:#7e887f;font-size:9px}.browser-content em{display:inline-block;margin-top:13px;color:#149d76;font:8px 'DM Mono';font-style:normal}
+.art-products{background:#edf0ed}.product-shape{position:absolute;background:#202622;box-shadow:0 20px 35px #11131130}.shape-keyboard{width:190px;height:65px;bottom:53px;left:13%;padding:9px;display:grid;grid-template-columns:repeat(6,1fr);gap:4px;transform:rotate(-9deg);border-radius:7px}.shape-keyboard i{background:#56615a;border-radius:2px}.shape-mouse{width:48px;height:77px;right:20%;top:42px;border-radius:50% 50% 45% 45%;transform:rotate(22deg)}.shape-headphone{width:80px;height:80px;right:10%;bottom:40px;border:10px solid #16b98a;border-bottom-color:transparent;background:transparent;box-shadow:none;border-radius:50%}
+.path-bottom{display:flex;justify-content:space-between;align-items:center;padding:22px 2px 3px}.path-bottom h2{margin:0;font:700 22px 'Manrope';letter-spacing:-.04em}.path-bottom p{max-width:420px;margin:8px 0 0;color:#778078;font-size:12px;line-height:1.6}.round-arrow{width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%}
+.services-section{padding-top:20px;padding-bottom:112px}
+.section-heading{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:38px}
+.section-heading h2,.about-inner h2,.contact-copy h2{margin:22px 0 0;font:700 clamp(36px,4.2vw,54px)/1.12 'Manrope';letter-spacing:-.06em}
+.section-heading>p{max-width:370px;margin:0 0 5px;color:#707970;font-size:13px;line-height:1.8}
+.service-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.service-item{min-height:245px;padding:22px 20px 20px 0;border-right:1px solid var(--line)}.service-item:not(:first-child){padding-left:20px}.service-item:last-child{border:0}
+.service-meta{display:flex;justify-content:space-between;color:#9ba39b;font:9px 'DM Mono'}.service-meta span:last-child{color:#159d76}
+.service-item h3{margin:35px 0 10px;font:700 18px 'Manrope';letter-spacing:-.04em}.service-item p{min-height:60px;color:#7a827b;font-size:11px;line-height:1.7}.service-item>a{display:inline-block;margin-top:17px;font-size:10px;font-weight:700}
+.gallery-section{padding:100px 0;background:#111512;color:#fff}.gallery-section .section-kicker{color:#a3aca4}.gallery-section .section-kicker span{color:#78827a}.gallery-section .section-heading>p{color:#a5aea6}.gallery-section .section-heading h2 em{color:#48d5a8}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gallery-card{padding:10px;background:#1a201c;border:1px solid #2a332d;transition:border-color .2s}.gallery-card:hover{border-color:#16b98a}
+.gallery-art{height:170px;position:relative;display:grid;place-items:center;overflow:hidden;background:#e6ebe5}.gallery-index{position:absolute;top:12px;left:13px;color:#7e8980;font:9px 'DM Mono'}
+.art-window{width:70%;height:112px;padding:13px;background:#fff;box-shadow:0 12px 24px #17251b19;display:flex;flex-direction:column;align-items:flex-start;gap:7px}.art-window i{display:inline-block;width:5px;height:5px;margin-right:3px;border-radius:50%;background:#a8b4aa}.art-window b{margin-top:8px;font:700 18px 'Manrope';color:#202820;letter-spacing:-.04em}.art-window span{width:42%;height:4px;background:#16b98a}
+.gallery-art-2{background:#e8e5dc}.gallery-art-2 .art-window{width:58%;height:125px;align-items:center;justify-content:center}.gallery-art-2 .art-window b{font:700 23px 'Manrope'}
+.gallery-art-3{background:#e3e9ed}.gallery-art-3 .art-window{width:78%;height:125px;background:#18212a}.gallery-art-3 .art-window b{color:#fff}
+.gallery-art-4{background:#e5e9e5}.gallery-art-4 .art-window{width:82%;height:130px;display:grid;grid-template-columns:1fr 1fr}.gallery-art-4 .art-window b{font-size:14px}
+.gallery-art-5{background:#dce9e2}.gallery-art-5 .art-window{width:62%;text-align:center;align-items:center}.gallery-art-6{background:#e6e2eb}.gallery-art-6 .art-window{width:75%;height:125px;background:#25212b}.gallery-art-6 .art-window b{color:#fff}
+.gallery-card-copy{display:flex;justify-content:space-between;align-items:center;padding:15px 5px 7px}.gallery-card-copy h3{margin:0;font:600 13px 'Manrope'}.gallery-card-copy p{margin:5px 0 0;color:#9aa39b;font-size:10px}
+.store-section{padding-top:104px;padding-bottom:110px}.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.product-card{background:#fff;border:1px solid var(--line)}.product-visual{height:220px;position:relative;display:grid;place-items:center;overflow:hidden;background:#edf0ec}.preview-label{position:absolute;top:12px;left:13px;color:#8b958c;font:8px 'DM Mono';letter-spacing:.12em}
+.keyboard-render{width:62%;height:65px;padding:9px;display:grid;grid-template-columns:repeat(10,1fr);gap:4px;background:#222a25;border-radius:7px;transform:rotate(-8deg);box-shadow:0 22px 30px #11131130}.keyboard-render i{background:#66736a;border-radius:2px}.keyboard-render i:nth-child(7n){background:#16b98a}
+.mouse-render{width:72px;height:120px;border-radius:48% 48% 45% 45%;background:linear-gradient(100deg,#303a33,#101511);transform:rotate(28deg);box-shadow:18px 22px 30px #11131135}.mouse-render i{position:absolute;left:50%;top:10px;width:1px;height:37px;background:#849188}
+.audio-render{width:140px;height:120px;position:relative}.audio-render i{position:absolute;left:24px;top:5px;width:92px;height:100px;border:12px solid #242d27;border-bottom-color:transparent;border-radius:55% 55% 40% 40%}.audio-render b{position:absolute;left:20px;right:20px;bottom:0;height:45px;border:10px solid #16b98a;border-top:0;border-radius:0 0 20px 20px}
+.product-info{padding:18px 20px 20px}.product-info>span{color:#159d76;font:9px 'DM Mono';text-transform:uppercase}.product-info h3{margin:9px 0 5px;font:700 17px 'Manrope'}.product-info p{margin:0;color:#8a928b;font-size:10px}
+.store-note{margin-top:22px;padding:15px 17px;background:#edf2ed;color:#707970;font:9px 'DM Mono';letter-spacing:.04em}
+.about-band{padding:85px 0;background:#e9f1eb}.about-inner{display:flex;align-items:end;justify-content:space-between;gap:60px}.about-inner h2{margin-top:18px}.about-inner>p{max-width:430px;margin:0 0 5px;color:#667168;font-size:13px;line-height:1.9}
+.contact-section{display:grid;grid-template-columns:1fr .75fr;gap:10%;padding-top:100px;padding-bottom:100px}.contact-copy>p{max-width:390px;color:#788078;font-size:13px;line-height:1.8}.contact-panel{padding:30px;background:#111512;color:#fff;align-self:center}.contact-number{color:#8a968c;font:9px 'DM Mono';letter-spacing:.12em}.contact-panel h3{margin:55px 0 10px;font:700 23px 'Manrope'}.contact-panel p{color:#a5aea6;font-size:12px}.contact-status{display:block;margin-top:32px;padding-top:15px;border-top:1px solid #303a33;color:#50d4aa;font:8px 'DM Mono';letter-spacing:.1em}
+.site-footer{min-height:90px;padding:20px 5.5%;display:flex;align-items:center;justify-content:space-between;background:#fff;border-top:1px solid var(--line)}.site-footer>span,.site-footer>a:last-child{color:#8a928b;font:9px 'DM Mono';letter-spacing:.08em}
+@media(max-width:900px){.hero{padding-left:5.5%;padding-right:5.5%;grid-template-columns:1fr 1fr}.hero-visual{height:350px}.main-nav{gap:16px}.service-grid{grid-template-columns:repeat(2,1fr)}.service-item:nth-child(2){border-right:0}.service-item:nth-child(n+3){border-top:1px solid var(--line)}.service-item:nth-child(3){padding-left:0}.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.announcement{padding:0 5%;font-size:8px}.announcement span{display:none}.site-header{height:70px;padding:0 5%}.main-nav{display:none}.header-cta{padding:10px 12px;font-size:10px}.hero{padding:60px 5% 45px;grid-template-columns:1fr;gap:38px}.hero h1{font-size:44px}.hero-description{font-size:14px}.hero-footnote{margin-top:45px}.hero-visual{height:310px}.visual-core{width:145px;height:145px}.visual-core span{font-size:38px}.visual-orbit{width:250px;height:250px}.orbit-two{width:340px;height:340px}.card-digital{top:45px}.card-tech{bottom:55px}.section-wrap{padding-left:5%;padding-right:5%}.pathways{padding-top:60px;padding-bottom:65px}.path-grid{grid-template-columns:1fr}.path-art{height:220px}.section-heading{display:block;margin-bottom:28px}.section-heading>p{margin-top:18px}.section-heading h2,.about-inner h2,.contact-copy h2{font-size:39px}.services-section{padding-bottom:70px}.service-grid{grid-template-columns:1fr}.service-item,.service-item:not(:first-child),.service-item:nth-child(3){min-height:0;padding:20px 0;border-right:0;border-bottom:1px solid var(--line)}.service-item:nth-child(n+3){border-top:0}.service-item:last-child{border-bottom:0}.service-item h3{margin-top:22px}.service-item p{min-height:0}.gallery-section{padding:70px 0}.gallery-grid{grid-template-columns:1fr 1fr;gap:9px}.gallery-art{height:130px}.art-window{height:90px;padding:9px}.art-window b{font-size:14px}.gallery-card-copy{padding:12px 2px 5px}.gallery-card-copy h3{font-size:11px}.gallery-card-copy p{font-size:9px}.store-section{padding-top:70px;padding-bottom:70px}.product-grid{grid-template-columns:1fr}.product-visual{height:190px}.about-band{padding:65px 0}.about-inner{display:block}.about-inner>p{margin-top:22px}.contact-section{grid-template-columns:1fr;gap:35px;padding-top:70px;padding-bottom:70px}.contact-panel h3{margin-top:35px}.site-footer{gap:14px;flex-wrap:wrap}.site-footer>span{order:3;width:100%}}
