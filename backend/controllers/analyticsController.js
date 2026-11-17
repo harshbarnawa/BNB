@@ -9,10 +9,21 @@ const getAdminStats = async (req, res) => {
             Order.countDocuments({}),
             Product.countDocuments({}),
             Order.aggregate([
-                { $match: { paymentStatus: "paid" } },
+                {
+                    $match: {
+                        $or: [
+                            { paymentStatus: "paid" },
+                            {
+                                paymentStatus: { $exists: false },
+                                status: { $in: ["shipped", "delivered"] },
+                                paymentId: { $nin: [null, ""] }
+                            }
+                        ]
+                    }
+                },
                 { $group: { _id: null, total: { $sum: "$totalAmount" } } }
             ]),
-            Order.countDocuments({ paymentStatus: "pending" })
+            Order.countDocuments({ paymentStatus: { $in: ["pending", "verifying"] } })
         ]);
 
         return res.json({
