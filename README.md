@@ -1,23 +1,56 @@
 # BNB — Board N Byte
 
-**PC Components. Peripherals. Custom Builds.**
+BNB is a founder-led digital studio and tech store, bringing digital services and useful technology together under one brand.
 
-BNB (Board N Byte) is a computer hardware retail brand focused on providing a wide range of computer components, peripherals, laptops, and custom-built PCs.
+## Two ways to build
 
-We aim to make PC hardware accessible and convenient for everyone, from everyday users and professionals to gamers and PC enthusiasts.
+### Digital Services
+- Business and portfolio websites
+- E-commerce development
+- Custom web applications and dashboards
+- Frontend and UI engineering
+- Interactive design concepts and custom project enquiries
 
-### What We Do
+BNB offers both defined service packages and custom projects. Custom work follows a written scope, advance payment and agreed milestones. Completed commissioned deliverables are handed over to the client after final payment, with ownership terms documented in the agreement. Limited bug-fix support and optional paid maintenance are offered after delivery.
 
-- **PC Components:** Processors, motherboards, graphics cards, RAM, SSDs, power supplies, and cabinets.
-- **Computer Peripherals:** Keyboards, mice, monitors, headphones, and accessories.
-- **Laptops:** Laptops for gaming, productivity, and everyday computing.
-- **Custom PC Builds:** Personalized PC configurations based on individual needs and budgets.
-- **PC Upgrades:** Hardware components and accessories to enhance existing systems.
+### Tech Store
+The store focuses on PC and tech accessories, including keyboards, mice, audio gear, desk accessories, gaming accessories and tech essentials.
 
-BNB brings computer hardware and technology products together in one place, making it easier for customers to explore, choose, and build their ideal computing setup.
+The store will launch in phases. Sample catalogue data is for development and demonstration only; real selling begins after supplier, inventory, pricing, shipping and returns are verified. The intended sourcing and fulfilment model is hybrid. Indian checkout is planned to support eligible Cash on Delivery alongside online payment; international orders require supported online prepayment.
 
----
+## Website direction
 
-**Author:** Harsh Barnawa
+- Shared BNB identity across Services and Store
+- Premium black/white foundation with mint accent `#16B98A`
+- English default with Hindi language option planned
+- Homepage gives equal prominence to Digital Services and Tech Store
+- Services includes a real-project portfolio and a separate interactive Theme Gallery
+- Theme Gallery categories: Business, E-commerce, Portfolio, SaaS & Dashboards, Landing Pages, Custom Web Applications
+- Demo environments use mock data and must be clearly labelled as demos
 
-**BNB — Board N Byte**
+## Repository structure
+
+- `backend/`: Express, MongoDB/Mongoose, authentication, product/order APIs, Razorpay integration, Cloudinary and email
+- `frontend/`: React application
+- `docs/IMPLEMENTATION_AUDIT.md`: current source audit, confirmed issues and implementation sequence
+
+## Local development
+
+Backend:
+1. `cd backend`
+2. Install dependencies with `npm install`
+3. Configure environment variables in `.env` (see the existing backend configuration)
+4. Run `npm run dev`
+
+Frontend:
+1. `cd frontend`
+2. Install dependencies with `npm install`
+3. Run `npm start`
+
+The frontend is under active development. Do not treat the preview catalogue as live inventory or the contact section as a connected enquiry service until the corresponding integrations are implemented.
+
+## Branch policy
+
+- `main` is kept untouched as the baseline.
+- Active implementation takes place on `development`.
+- Merge to `main` only after review and testing.
