@@ -21,9 +21,8 @@ const getRazorpay = () => {
 
 const createdOrder = async (req, res) => {
     try {
-        const { items, totalAmount: ignoredClientAmount } = req.body;
         const address = validateAddress(req.body.address);
-        const priced = await getPricedItems(items);
+        const priced = await getPricedItems(req.body.items);
         const razorpay = getRazorpay();
 
         const razorpayOrder = await razorpay.orders.create({
@@ -85,6 +84,10 @@ const verifyPayment = async (req, res) => {
             return res.status(200).json({ success: true, message: "Payment was already verified", order });
         }
 
+        if (order.paymentStatus !== "pending") {
+            return res.status(409).json({ success: false, message: "This payment order is already being processed or requires support" });
+        }
+
         const expectedSignature = crypto
             .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
             .update(`${razorpayOrderId}|${razorpayPaymentId}`)
@@ -108,30 +111,44 @@ const verifyPayment = async (req, res) => {
             return res.status(400).json({ success: false, message: "Captured payment amount does not match the order" });
         }
 
+        const claimedOrder = await Order.findOneAndUpdate(
+            { _id: order._id, paymentStatus: "pending" },
+            { $set: { paymentStatus: "verifying" } },
+            { new: true }
+        );
+
+        if (!claimedOrder) {
+            const latestOrder = await Order.findById(order._id);
+            if (latestOrder?.paymentStatus === "paid") {
+                return res.status(200).json({ success: true, message: "Payment was already verified", order: latestOrder });
+            }
+            return res.status(409).json({ success: false, message: "Payment verification is already in progress" });
+        }
+
         try {
-            await reserveStock(order.items);
+            await reserveStock(claimedOrder.items);
         } catch (stockError) {
-            order.paymentId = razorpayPaymentId;
-            order.paymentStatus = "refund_required";
-            await order.save();
+            claimedOrder.paymentId = razorpayPaymentId;
+            claimedOrder.paymentStatus = "refund_required";
+            await claimedOrder.save();
 
             return res.status(409).json({
                 success: false,
                 message: "Payment received but stock is no longer available. BNB support must arrange a refund.",
-                orderId: order._id
+                orderId: claimedOrder._id
             });
         }
 
-        order.paymentId = razorpayPaymentId;
-        order.paymentStatus = "paid";
-        order.status = "processing";
-        await order.save();
+        claimedOrder.paymentId = razorpayPaymentId;
+        claimedOrder.paymentStatus = "paid";
+        claimedOrder.status = "processing";
+        await claimedOrder.save();
 
         try {
             await sendEmail(
                 req.user.email,
                 "BNB payment confirmed",
-                `Your payment of ₹${order.totalAmount.toFixed(2)} was received. Order ID: ${order._id}`
+                `Your payment of ₹${claimedOrder.totalAmount.toFixed(2)} was received. Order ID: ${claimedOrder._id}`
             );
         } catch (emailError) {
             console.error("Payment confirmation email failed:", emailError.message);
@@ -140,7 +157,7 @@ const verifyPayment = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "Payment verified and order confirmed",
-            order
+            order: claimedOrder
         });
     } catch (error) {
         console.error("Payment verification error:", error);
