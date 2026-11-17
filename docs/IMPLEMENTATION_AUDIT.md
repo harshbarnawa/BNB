@@ -2,49 +2,57 @@
 
 Audit date: 2026-11-17
 Repository: harshbarnawa/BNB
-Default branch: main
-Working branch: development (created from main)
+Working branch: development
 
-## Repository state
+## Branch safety
 
-- Before this work, main was the only branch. The development branch now exists and is the only branch receiving implementation commits.
-- Main remains at its original commit (91f84f9d322a338d24bdac2f0891ceb3018c51c3); no files or commits have been written to main.
-- Backend has an Express/Mongoose structure for authentication, products, orders, Razorpay payments, admin analytics, Cloudinary uploads, and email.
-- Frontend was a Create React App placeholder. A first responsive BNB homepage shell has now been added on development: shared brand navigation, Digital Services + Tech Store split paths, service overview, six gallery categories, illustrative product previews, about and contact sections.
-- The frontend is not yet build-tested in a local runtime; the current changes are source-level work only.
-- notes.txt documents the original build sequence and records that frontend work had only just started after backend/Postman work.
+- `development` was created from the existing `main` branch.
+- `main` remains at baseline commit `91f84f9d322a338d24bdac2f0891ceb3018c51c3`; all implementation commits are isolated on `development`.
+- Do not merge or deploy until local build, API tests, and payment sandbox tests pass.
 
-## Confirmed backend issues from source review
+## Implemented in this work session
 
-1. Linux import-case mismatch was present: files were named authMIddleware.js/adminMIddleware.js while imports requested authMiddleware.js/adminMiddleware.js. Correctly cased files have now been created and the incorrectly cased files removed on development.
-2. Payment endpoints are public: POST /api/payments/order and POST /api/payments/verify have no authentication middleware.
-3. Payment amount is client-controlled: createdOrder uses req.body.amount directly to create the Razorpay order. The server does not derive the amount from trusted product prices and quantities.
-4. Order creation trusts client-supplied items and totalAmount without reloading products, validating stock, or recalculating totals.
-5. Order schema requires paymentId, which does not accommodate COD orders where there may be no online payment ID.
-6. Analytics counts every order's totalAmount as revenue; pending/unpaid orders can inflate revenue.
-7. Product image is required in the schema, but createProduct starts with an empty imageUrl when no upload is supplied. The API will reject such a product at save time; this should be an explicit validation or schema decision.
-8. Product update uses value || existingValue for price and stock, preventing intentional updates to numeric zero.
-9. Multer writes uploaded files to a local uploads directory; temporary file cleanup and production storage behavior need review.
-10. Order address field is named fulName; correct naming/migration compatibility should be considered before changing persisted schema.
-11. .gitignore currently does not exclude the backend uploads directory; uploaded files are already present in the repository tree and need a careful cleanup decision rather than blind deletion.
+### Frontend foundation
+- Replaced the placeholder React homepage with the BNB studio + tech store landing-page foundation.
+- Added the shared black/white/mint identity, two primary paths, services overview, six Theme Gallery categories, illustrative product previews, about and contact sections.
+- Added responsive styles, metadata, and global CSS.
+- This is a homepage foundation, not the complete Services/Store experience. Contact and WhatsApp integrations are not connected yet.
 
-## Current implementation direction
+### Backend reliability and commerce
+- Corrected middleware filename casing for Linux deployments.
+- Authentication middleware now rejects missing, invalid, and deleted-user sessions; admin middleware has explicit early returns.
+- Razorpay order creation and verification now require authentication.
+- Razorpay amount is calculated from database product prices and quantities; client-supplied totals are ignored.
+- Razorpay verification checks HMAC using a timing-safe comparison, fetches the payment from Razorpay, verifies captured status and amount, and prevents duplicate verification attempts.
+- Orders persist before payment verification and retain the payment/order references.
+- COD orders are supported for India; online Razorpay remains available.
+- Order item prices and totals are generated server-side; product IDs, quantities, address and available stock are validated.
+- Stock decrements use conditional atomic product updates; failed partial reservations are rolled back.
+- Cancellation avoids restoring stock for unpaid Razorpay orders; COD/paid cancellation restores inventory and paid online orders are flagged for refund handling.
+- COD orders become paid when marked delivered.
+- Revenue analytics count paid orders only, with a compatibility fallback for older shipped/delivered records that predate paymentStatus.
+- Product create/update validates price and stock, permits stock zero, requires an image on create, uploads to Cloudinary, and cleans temporary upload files.
+- Product uploads are size-limited and restricted to accepted image MIME types; API errors return JSON.
+- Order schema remains compatible with legacy `fulName` address fields and older order item snapshots.
+- Updated seed data for the current order schema and payment statuses.
+- Updated .gitignore for generated uploads and frontend build output.
 
-- Preserve the existing backend rather than rewrite it.
-- Stabilize and secure the commerce flow before connecting a live checkout.
-- Support COD as a payment method, while retaining online Razorpay payments.
-- Do not show sample seed products as real available inventory.
-- Build BNB as one shared brand with two clear paths: Digital Services and Tech Store.
-- Approved visual direction: premium black/white foundation with mint accent #16B98A.
-- Services: packages and custom projects, milestone payments, client handover, client-owned commissioned deliverables, limited bug-fix window and optional maintenance, enquiry form + WhatsApp, lead tracking, contracts, real portfolio + clearly labelled interactive demos.
-- Store: PC and tech accessories, phased launch, hybrid inventory and fulfilment, COD for eligible Indian orders, and online prepayment for international orders.
-- Keep main untouched. All implementation work belongs on development until explicitly approved for merge.
+## Remaining production blockers / follow-up work
+
+1. **Payment expiry and stock reservation:** inventory is checked when a Razorpay order is created and atomically deducted only after capture. If stock sells out while the customer is paying, the captured payment is marked `refund_required`; support must arrange the refund. Add a reservation/expiry strategy and Razorpay webhook reconciliation before live payments.
+2. **Refund execution:** refund-required orders are flagged, but automated Razorpay refunds are not implemented.
+3. **Payment webhook:** the current verification flow depends on the authenticated client callback. Add a signed Razorpay webhook for reliable reconciliation when a customer closes the browser after payment.
+4. **Shipping and tax:** server totals currently use product price × quantity only. Shipping fees, tax/GST, discounts and delivery eligibility rules are not yet implemented.
+5. **Upload validation:** MIME and file-size checks are present; add file-signature/content inspection and Cloudinary asset cleanup for replaced/deleted products.
+6. **Database migration:** old order records are kept readable, but a controlled migration should normalize legacy `fulName`, snapshot product names, and payment statuses after backing up MongoDB.
+7. **Frontend integration:** no cart, checkout, login, service enquiry, WhatsApp, client CRM, or admin dashboard is complete yet.
+8. **Testing:** no local React build, automated API tests, MongoDB integration tests, or Razorpay sandbox run has been performed in this remote source-edit session.
 
 ## Next engineering sequence
 
-1. Complete and locally build-test the public website shell.
-2. Add Services landing, Theme Gallery detail pages, real-project portfolio structure and enquiry flow.
-3. Add Store catalogue/product detail/cart/checkout UI using clearly labelled demo data.
-4. Fix backend order validation, payment verification, COD model, inventory handling and revenue calculations.
-5. Add admin workflows for products, orders, service leads and project enquiries.
-6. Run build/API/security tests before any deployment or merge.
+1. Pull `development` locally and run backend/frontend dependency installs and build checks.
+2. Test register/login, admin product CRUD, stock validation, COD order creation/cancellation, Razorpay sandbox order/verification, duplicate callbacks, and revenue analytics.
+3. Add payment webhook, refund workflow, payment expiry/reservation, shipping/tax rules and migration.
+4. Build Services pages, interactive Theme Gallery, enquiry forms, WhatsApp routing and admin lead management.
+5. Build Store catalogue, product detail, cart, checkout, account/order history and admin order workflows.
+6. Only merge to `main` after explicit approval and passing tests.
