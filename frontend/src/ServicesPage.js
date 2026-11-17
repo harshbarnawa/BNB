@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { services } from './servicesData';
+import EnquiryForm from './EnquiryForm';
 import './App.css';
 import './ServicesPage.css';
 
@@ -173,11 +174,17 @@ function ServicesPage() {
               <div className="svc-brief-preview-label">YOUR BRIEF PREVIEW</div>
               <pre className="svc-brief-preview">{brief}</pre>
               <button className="svc-copy-button" type="button" onClick={copyBrief}>Copy project brief <Arrow /></button>
+              <a className="svc-send-link" href="#enquiry">Want BNB to receive your enquiry? Continue to the enquiry form <Arrow /></a>
               {copied && <p className="svc-feedback" role="status">Brief copied. You can paste it when you're ready to discuss your project.</p>}
               {copyError && <p className="svc-feedback" role="status">Clipboard access is unavailable. You can select and copy the preview above manually.</p>}
             </div>
           </div>
         </section>
+        <EnquiryForm
+          services={services}
+          selectedServiceId={services.find((service) => service.label === selected)?.id || services[0].id}
+          onServiceChange={(id) => chooseService(services.find((service) => service.id === id)?.label || services[0].label)}
+        />
       </main>
 
       <footer className="site-footer">

@@ -7,6 +7,10 @@
     {
       "source": "/services/:category",
       "destination": "/index.html"
+    },
+    {
+      "source": "/admin/leads",
+      "destination": "/index.html"
     }
   ]
 }

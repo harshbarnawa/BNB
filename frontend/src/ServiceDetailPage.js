@@ -25,7 +25,7 @@ function ServiceDetailPage() {
 
   if (!service) return <Navigate to="/services" replace />;
 
-  const briefLink = '/services?service=' + encodeURIComponent(service.id) + '#brief';
+  const briefLink = '/services?service=' + encodeURIComponent(service.id) + '#enquiry';
   const others = services.filter((item) => item.id !== service.id);
 
   return (
@@ -134,7 +134,7 @@ function ServiceDetailPage() {
               <div className="eyebrow"><span className="eyebrow-line" /> THE NEXT STEP</div>
               <h2>Have an idea?<br /><span>Give it direction.</span></h2>
               <p>Share the essentials in a project brief. We can use it as a starting point to discuss scope and a quotation.</p>
-              <div className="cat-honesty">The brief builder copies text to your device. It does not submit an enquiry or request a quotation automatically.</div>
+              <div className="cat-honesty">Enquiry submissions work only after the BNB backend is configured. A project brief is not a confirmed booking or quotation.</div>
             </div>
             <a className="button button-light" href={briefLink}>Prepare your {service.label.toLowerCase()} brief <Arrow /></a>
           </div>
