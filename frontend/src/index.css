@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+html,body,#root{min-height:100%;margin:0}
+body{font-family:'Manrope',Arial,sans-serif}
+*{box-sizing:border-box}
+button,a{-webkit-tap-highlight-color:transparent}
+::selection{background:#16b98a;color:#101510}
