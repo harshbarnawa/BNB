@@ -1,57 +1,7 @@
 import { useEffect, useState } from 'react';
+import { services } from './servicesData';
 import './App.css';
 import './ServicesPage.css';
-
-const services = [
-  {
-    id: 'business',
-    label: 'Business websites',
-    short: 'Build a stronger online presence.',
-    description: 'Clear, fast and considered websites that help people understand your business and take the next step.',
-    details: 'Company sites, service pages, responsive layouts and conversion-focused calls to action.',
-    mark: '01'
-  },
-  {
-    id: 'commerce',
-    label: 'E-commerce websites',
-    short: 'Give your products room to grow.',
-    description: 'Thoughtful storefront experiences built around discovery, product clarity and a smoother checkout journey.',
-    details: 'Product discovery, catalogues, carts, customer journeys and integrations based on your scope.',
-    mark: '02'
-  },
-  {
-    id: 'portfolio',
-    label: 'Portfolio websites',
-    short: 'Let your work speak clearly.',
-    description: 'Distinctive personal and creative portfolios that put your projects and capabilities front and centre.',
-    details: 'Project showcases, about pages, case studies and responsive personal branding.',
-    mark: '03'
-  },
-  {
-    id: 'saas',
-    label: 'SaaS & dashboards',
-    short: 'Make complex work feel simple.',
-    description: 'Practical interfaces that turn information, workflows and data into usable digital products.',
-    details: 'Admin panels, user dashboards, internal tools and product interfaces.',
-    mark: '04'
-  },
-  {
-    id: 'landing',
-    label: 'Landing pages',
-    short: 'One clear message. One next step.',
-    description: 'Focused pages for product launches, campaigns and businesses looking to turn attention into action.',
-    details: 'Campaign pages, waitlists, product launches and lead-generation layouts.',
-    mark: '05'
-  },
-  {
-    id: 'custom',
-    label: 'Custom web applications',
-    short: 'Software built for your workflow.',
-    description: 'Custom solutions shaped around what your business actually needs instead of forcing a template.',
-    details: 'Business web apps, integrations, workflow tools and custom software.',
-    mark: '06'
-  }
-];
 
 const process = [
   { number: '01', title: 'Discover', description: 'We understand the business, audience, goals and what success should look like.' },
@@ -67,7 +17,10 @@ const Arrow = () => (
 );
 
 function ServicesPage() {
-  const [selected, setSelected] = useState(services[0].label);
+  const [selected, setSelected] = useState(() => {
+    const serviceId = new URLSearchParams(window.location.search).get('service');
+    return services.find((service) => service.id === serviceId)?.label || services[0].label;
+  });
   const [requirements, setRequirements] = useState('');
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
@@ -172,7 +125,7 @@ function ServicesPage() {
                 <strong>{service.short}</strong>
                 <p>{service.description}</p>
                 <div className="svc-card-details">{service.details}</div>
-                <a href="#brief" onClick={() => chooseService(service.label)}>Build a project brief <Arrow /></a>
+                <a href={'/services/' + service.id}>Explore this service <Arrow /></a>
               </article>
             ))}
           </div>

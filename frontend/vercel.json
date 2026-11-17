@@ -3,6 +3,10 @@
     {
       "source": "/services",
       "destination": "/index.html"
+    },
+    {
+      "source": "/services/:category",
+      "destination": "/index.html"
     }
   ]
 }
