@@ -121,14 +121,11 @@ const updateOrderStatus = async (req, res) => {
             return res.status(409).json({ message: "This order can no longer be changed" });
         }
 
-        if (status === "cancelled") {
-            if (order.paymentMethod === "cod" || order.paymentStatus === "paid") {
-                await releaseStock(order.items);
-            }
+        const shouldRestoreStock = status === "cancelled" &&
+            (order.paymentMethod === "cod" || order.paymentStatus === "paid");
 
-            if (order.paymentStatus === "paid") {
-                order.paymentStatus = "refund_required";
-            }
+        if (status === "cancelled" && order.paymentStatus === "paid") {
+            order.paymentStatus = "refund_required";
         }
 
         if (status === "delivered" && order.paymentMethod === "cod") {
@@ -138,7 +135,19 @@ const updateOrderStatus = async (req, res) => {
         order.status = status;
         await order.save();
 
-        return res.json({ message: "Order status updated successfully", order });
+        if (shouldRestoreStock) {
+            try {
+                await releaseStock(order.items);
+            } catch (stockError) {
+                console.error("Order cancelled but stock restoration needs manual attention:", stockError);
+            }
+        }
+
+        return res.json({
+            message: "Order status updated successfully",
+            stockRestorationWarning: shouldRestoreStock ? "Check inventory if stock restoration did not complete." : null,
+            order
+        });
     } catch (error) {
         console.error("Update order status error:", error);
         return res.status(500).json({ message: "Error updating order status" });
