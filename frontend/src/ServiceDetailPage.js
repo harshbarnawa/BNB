@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { getService, services } from './servicesData';
+import ServicePackages from './ServicePackages';
 import './App.css';
 import './ServicesPage.css';
 import './ServiceDetailPage.css';
@@ -60,7 +61,7 @@ function ServiceDetailPage() {
               <p>{service.introduction}</p>
               <div className="cat-actions">
                 <a className="button button-dark" href={briefLink}>Plan this project <Arrow /></a>
-                <a className="text-link" href="#possibilities">Explore the approach <Arrow /></a>
+                <a className="text-link" href="#packages">Compare packages <Arrow /></a>
               </div>
             </div>
             <div className="cat-feature" aria-hidden="true">
@@ -127,6 +128,8 @@ function ServiceDetailPage() {
             ))}
           </div>
         </section>
+
+        <ServicePackages serviceId={service.id} />
 
         <section className="cat-next-step">
           <div className="section-wrap cat-next-step-inner">

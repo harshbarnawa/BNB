@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { apiEnabled, apiRequest } from './api';
 import './EnquiryForm.css';
 
@@ -13,10 +13,32 @@ const initialFields = {
   consent: false
 };
 
-export default function EnquiryForm({ services, selectedServiceId, onServiceChange }) {
+export default function EnquiryForm({ services, selectedServiceId, onServiceChange, selectedPackageTierId, onPackageChange }) {
   const [fields, setFields] = useState(initialFields);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState(null);
+  const [packageNames, setPackageNames] = useState({});
+
+  useEffect(() => {
+    let active = true;
+    if (!apiEnabled) return undefined;
+    apiRequest('/api/packages')
+      .then((data) => {
+        if (!active) return;
+        const names = {};
+        (data.packages || []).forEach((item) => {
+          names[item.serviceId + ':' + item.tierId] = item.title;
+        });
+        setPackageNames(names);
+      })
+      .catch(() => {});
+    return () => { active = false; };
+  }, []);
+
+
+  const packageOptionName = (tierId) =>
+    packageNames[selectedServiceId + ':' + tierId] ||
+    ({ starter: 'Starter', growth: 'Growth', custom: 'Custom scope' }[tierId]);
 
   const update = (field, value) => {
     setFields((previous) => ({ ...previous, [field]: value }));
@@ -38,7 +60,7 @@ export default function EnquiryForm({ services, selectedServiceId, onServiceChan
     try {
       const payload = await apiRequest('/api/leads', {
         method: 'POST',
-        body: { ...fields, serviceId: selectedServiceId }
+        body: { ...fields, serviceId: selectedServiceId, packageTierId: selectedPackageTierId || '' }
       });
       setResult({
         type: 'success',
@@ -78,6 +100,16 @@ export default function EnquiryForm({ services, selectedServiceId, onServiceChan
             <div className="enquiry-field"><label htmlFor="enquiry-company">Company (optional)</label><input id="enquiry-company" value={fields.company} onChange={(e) => update('company', e.target.value)} maxLength="100" autoComplete="organization" placeholder="Company or brand" /></div>
           </div>
           <div className="enquiry-field"><label htmlFor="enquiry-service">Service *</label><select id="enquiry-service" value={selectedServiceId} onChange={(e) => onServiceChange(e.target.value)} required>{services.map((service) => <option value={service.id} key={service.id}>{service.label}</option>)}</select></div>
+          <div className="enquiry-field">
+            <label htmlFor="enquiry-package">Preferred package (optional)</label>
+            <select id="enquiry-package" value={selectedPackageTierId || ''} onChange={(e) => onPackageChange(e.target.value)}>
+              <option value="">Let BNB help me choose</option>
+              {['starter', 'growth', 'custom'].map((tierId) => (
+                <option value={tierId} key={tierId}>{packageOptionName(tierId)}</option>
+              ))}
+            </select>
+            <small className="enquiry-package-note">A package selection is not a booking. Scope and starting prices are confirmed in a written quote.</small>
+          </div>
           <div className="enquiry-field"><label htmlFor="enquiry-budget">Estimated budget (optional)</label><input id="enquiry-budget" value={fields.budget} onChange={(e) => update('budget', e.target.value)} maxLength="80" placeholder="Your range, or leave blank" /></div>
           <div className="enquiry-field"><label htmlFor="enquiry-requirements">Project requirements *</label><textarea id="enquiry-requirements" rows="5" value={fields.requirements} onChange={(e) => update('requirements', e.target.value)} minLength="20" maxLength="3000" required placeholder="What would you like to build, and what should it help you achieve?" /></div>
           <div className="enquiry-honeypot" aria-hidden="true"><label htmlFor="enquiry-website">Website</label><input id="enquiry-website" value={fields.website} onChange={(e) => update('website', e.target.value)} tabIndex="-1" autoComplete="off" /></div>

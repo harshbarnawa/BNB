@@ -1,0 +1,29 @@
+.admin-pricing-panel{margin-top:96px;padding:50px 0 30px;border-top:1px solid #cbdccb;scroll-margin-top:24px}
+.admin-pricing-heading{display:flex;justify-content:space-between;gap:25px;align-items:end}
+.admin-pricing-heading h2{font-size:clamp(35px,4.3vw,56px);letter-spacing:-.075em;margin:22px 0 17px;line-height:1.04}
+.admin-pricing-heading p{font-size:12px;color:#67796c;max-width:640px;line-height:1.8}
+.admin-pricing-heading>a{font-size:11px;white-space:nowrap;font-weight:800;padding-bottom:12px}
+.admin-pricing-tabs{display:flex;gap:8px;overflow-x:auto;margin:30px 0 23px;padding-bottom:10px}
+.admin-pricing-tabs button{background:white;border:1px solid #d5e2d5;flex-shrink:0;padding:12px 14px;font-size:10px;font-weight:700;cursor:pointer}
+.admin-pricing-tabs button.selected{background:#16231a;color:white;border-color:#16231a}
+.admin-pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.admin-pricing-card{background:#fff;padding:27px;border:1px solid #d6e1d6;display:flex;flex-direction:column;gap:13px;min-width:0}
+.admin-pricing-card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;font:9px var(--mono);color:#768c7b;letter-spacing:.08em}
+.admin-price-live{color:#14845d}.admin-price-draft{color:#8a958b}
+.admin-pricing-card h3{font-size:28px;letter-spacing:-.05em;margin:12px 0 0}
+.admin-pricing-card>p{font-size:12px;line-height:1.7;color:#647366;margin:0 0 9px}
+.admin-pricing-card>label:not(.admin-pricing-toggle){font-size:11px;font-weight:800}
+.admin-pricing-card>input{font:12px var(--sans);width:100%;border:1px solid #d1ded1;background:#fff;padding:13px;outline:none}
+.admin-pricing-card>input:focus{border-color:#149566}
+.admin-pricing-toggle{display:flex;gap:10px;align-items:center;font-size:11px;line-height:1.5;margin:8px 0}
+.admin-pricing-toggle input{accent-color:#16b98a}
+.admin-pricing-preview{padding:12px;background:#f0f5f0;font-size:11px!important;line-height:1.7}
+.admin-pricing-preview strong{color:#214b33}
+.admin-pricing-card>button{background:#19251c;color:#fff;border:0;padding:14px;font-size:11px;font-weight:800;cursor:pointer}
+.admin-pricing-card>button:disabled{opacity:.5;cursor:not-allowed}
+.admin-pricing-feedback{padding:14px 18px;font-size:12px;line-height:1.7;margin-top:20px}
+.admin-pricing-feedback.success{background:#e1f3e7;color:#176447}
+.admin-pricing-feedback.error{background:#fbe9e5;color:#8a3029}
+.admin-pricing-message{padding:23px;background:#eaf2ea;font-size:12px}
+.admin-pricing-footnote{font-size:10px;color:#829085;line-height:1.8;margin-top:24px}
+@media(max-width:700px){.admin-pricing-heading{display:block}.admin-pricing-heading>a{display:inline-block;margin-top:15px}.admin-pricing-grid{grid-template-columns:1fr}.admin-pricing-card{padding:22px}}

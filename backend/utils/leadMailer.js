@@ -1,3 +1,4 @@
+const { servicePackages } = require("./servicePackagesCatalog");
 const SERVICE_LABELS = Object.freeze({
     business: "Business websites",
     commerce: "E-commerce websites",
@@ -22,6 +23,10 @@ const detailLine = (label, value) => `<tr><td style="padding:9px 12px;font-size:
 function buildNotification(lead, audience) {
     const reference = String(lead.id || lead._id);
     const service = SERVICE_LABELS[lead.serviceId] || lead.serviceId;
+    const packageTitle = lead.packageTierId
+        ? (lead.packageTierId === "custom" ? "Custom" :
+            servicePackages[lead.serviceId]?.[lead.packageTierId]?.title || "To discuss")
+        : "Not selected";
     if (audience === "customer") {
         const plain = [
             `Hi ${lead.name},`,
@@ -29,6 +34,7 @@ function buildNotification(lead, audience) {
             "Thank you for reaching out to Board N Byte!",
             "We've received your project enquiry and will review the details.",
             "Service: " + service,
+            "Package: " + packageTitle,
             "Reference: " + reference,
             "",
             "We'll contact you using the details you provided after reviewing your request.",
@@ -36,7 +42,7 @@ function buildNotification(lead, audience) {
             "",
             "Board N Byte | Digital Services"
         ].join("\n");
-        const body = `<p style="font-size:14px;line-height:1.8">Hi <strong>${escapeHtml(lead.name)}</strong>,</p><p style="font-size:14px;line-height:1.8">Thank you for reaching out! We've received your project enquiry and will review the details.</p><table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background:#f2f7f2;margin:26px 0">${detailLine("Service", service)}${detailLine("Reference", reference)}</table><p style="font-size:13px;line-height:1.8;color:#526657">We'll get in touch using the details you provided. This acknowledgement does not confirm a quotation, timeline or booking.</p><p style="font-size:14px;font-weight:bold;margin-top:26px">Thanks,<br>Team BNB</p>`;
+        const body = `<p style="font-size:14px;line-height:1.8">Hi <strong>${escapeHtml(lead.name)}</strong>,</p><p style="font-size:14px;line-height:1.8">Thank you for reaching out! We've received your project enquiry and will review the details.</p><table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background:#f2f7f2;margin:26px 0">${detailLine("Service", service)}${detailLine("Package", packageTitle)}${detailLine("Reference", reference)}</table><p style="font-size:13px;line-height:1.8;color:#526657">We'll get in touch using the details you provided. This acknowledgement does not confirm a quotation, timeline or booking.</p><p style="font-size:14px;font-weight:bold;margin-top:26px">Thanks,<br>Team BNB</p>`;
         return {
             to: [lead.email],
             ...(process.env.LEAD_REPLY_TO_EMAIL || process.env.LEAD_NOTIFICATION_EMAIL
@@ -59,6 +65,7 @@ function buildNotification(lead, audience) {
         "Phone: " + (lead.phone || "Not provided"),
         "Company: " + (lead.company || "Not provided"),
         "Service: " + service,
+        "Package: " + packageTitle,
         "Budget: " + (lead.budget || "Not provided"),
         "",
         "Requirements:",
@@ -66,7 +73,7 @@ function buildNotification(lead, audience) {
         "",
         "Manage this lead: https://boardnbyte.vercel.app/admin/leads"
     ].join("\n");
-    const body = `<table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background:#f2f7f2;margin:10px 0 24px">${detailLine("Reference", reference)}${detailLine("Customer", lead.name)}${detailLine("Email", lead.email)}${detailLine("Phone", lead.phone)}${detailLine("Company", lead.company)}${detailLine("Service", service)}${detailLine("Budget", lead.budget)}</table><h2 style="font-size:15px">Project requirements</h2><p style="white-space:pre-wrap;font-size:13px;line-height:1.8;overflow-wrap:anywhere">${escapeHtml(lead.requirements)}</p><a href="https://boardnbyte.vercel.app/admin/leads" style="display:inline-block;background:#15221a;color:#fff;text-decoration:none;font-size:12px;font-weight:bold;padding:15px 22px;margin-top:14px">Open BNB Leads Dashboard &rarr;</a>`;
+    const body = `<table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background:#f2f7f2;margin:10px 0 24px">${detailLine("Reference", reference)}${detailLine("Customer", lead.name)}${detailLine("Email", lead.email)}${detailLine("Phone", lead.phone)}${detailLine("Company", lead.company)}${detailLine("Service", service)}${detailLine("Package", packageTitle)}${detailLine("Budget", lead.budget)}</table><h2 style="font-size:15px">Project requirements</h2><p style="white-space:pre-wrap;font-size:13px;line-height:1.8;overflow-wrap:anywhere">${escapeHtml(lead.requirements)}</p><a href="https://boardnbyte.vercel.app/admin/leads" style="display:inline-block;background:#15221a;color:#fff;text-decoration:none;font-size:12px;font-weight:bold;padding:15px 22px;margin-top:14px">Open BNB Leads Dashboard &rarr;</a>`;
     return {
         to: [recipient],
         subject: "New BNB enquiry — " + service,

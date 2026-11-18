@@ -41,3 +41,5 @@
 .admin-email-row button{border:1px solid #bcd0c0;background:white;padding:9px 11px;white-space:nowrap;color:#204a31;font-size:10px;font-weight:700;cursor:pointer}
 .admin-email-row button:disabled{opacity:.5;cursor:not-allowed}
 .admin-email-status>p{color:#829084;font-size:9px;line-height:1.6;margin-bottom:0}
+
+.admin-pricing-nav{font-size:11px;color:#206a48;font-weight:800;white-space:nowrap;text-decoration:underline}

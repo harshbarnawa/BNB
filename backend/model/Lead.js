@@ -21,6 +21,11 @@ const leadSchema = new mongoose.Schema({
         required: true,
         enum: ["business", "commerce", "portfolio", "saas", "landing", "custom"]
     },
+    packageTierId: {
+        type: String,
+        enum: ["", "starter", "growth", "custom"],
+        default: ""
+    },
     budget: { type: String, trim: true, maxlength: 80, default: "" },
     requirements: { type: String, required: true, trim: true, maxlength: 3000 },
     consentAt: { type: Date, required: true },

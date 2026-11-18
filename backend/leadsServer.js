@@ -55,6 +55,7 @@ app.get("/health", (req, res) => {
 });
 
 app.post("/api/auth/login", leadRateLimit, loginUser);
+app.use("/api/packages", require("./routes/servicePackageRoutes"));
 app.use("/api/leads", leadRoutes);
 
 app.use((req, res) => {

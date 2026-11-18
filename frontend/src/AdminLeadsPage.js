@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { apiEnabled, apiRequest } from './api';
+import AdminPricingPanel from './AdminPricingPanel';
 import './App.css';
 import './AdminLeadsPage.css';
 
@@ -72,6 +73,7 @@ function LeadItem({ lead, token, onSaved }) {
         <span>{new Date(lead.createdAt).toLocaleString()}</span>
       </div>
       <p><b>Service:</b> {lead.serviceId}</p>
+      <p><b>Package:</b> {lead.packageTierId ? ({ starter: 'Starter / Essential', growth: 'Growth / Advanced', custom: 'Custom' }[lead.packageTierId] || lead.packageTierId) : 'Not selected'}</p>
       {lead.company && <p><b>Company:</b> {lead.company}</p>}
       {lead.budget && <p><b>Budget:</b> {lead.budget}</p>}
       <div className="admin-lead-brief">{lead.requirements}</div>
@@ -196,12 +198,13 @@ function AdminLeadsPage() {
                 {statuses.map(([value, text]) => <option key={value} value={value}>{text}</option>)}
               </select>
             </label>
-            <div className="admin-tools"><span>{total} enquiries</span><button type="button" onClick={() => setRefresh((value) => value + 1)}>Refresh</button><button type="button" onClick={logout}>Log out</button></div>
+            <div className="admin-tools"><a className="admin-pricing-nav" href="#pricing">Manage pricing ↗</a><span>{total} enquiries</span><button type="button" onClick={() => setRefresh((value) => value + 1)}>Refresh</button><button type="button" onClick={logout}>Log out</button></div>
           </div>
           {busy && <p role="status">Loading enquiries...</p>}
           {!busy && leads.length === 0 && !error && <p className="admin-empty">No enquiries found.</p>}
           <div className="admin-lead-grid">{leads.map((lead) => <LeadItem lead={lead} key={lead._id} token={token} onSaved={() => setRefresh((value) => value + 1)} />)}</div>
           <div className="admin-pages"><button type="button" disabled={page <= 1 || busy} onClick={() => setPage((value) => value - 1)}>Previous</button><span>Page {page} of {Math.max(1, pages)}</span><button type="button" disabled={page >= pages || busy} onClick={() => setPage((value) => value + 1)}>Next</button></div>
+          <AdminPricingPanel token={token} />
         </>}
         {error && <p className="admin-error" role="alert">{error}</p>}
       </main>

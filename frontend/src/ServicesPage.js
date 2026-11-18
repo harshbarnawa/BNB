@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { services } from './servicesData';
 import EnquiryForm from './EnquiryForm';
+import ServicePackages from './ServicePackages';
 import './App.css';
 import './ServicesPage.css';
 
@@ -22,6 +23,10 @@ function ServicesPage() {
     const serviceId = new URLSearchParams(window.location.search).get('service');
     return services.find((service) => service.id === serviceId)?.label || services[0].label;
   });
+  const [selectedPackageTierId, setSelectedPackageTierId] = useState(() => {
+    const tier = new URLSearchParams(window.location.search).get('package');
+    return ['starter', 'growth', 'custom'].includes(tier) ? tier : '';
+  });
   const [requirements, setRequirements] = useState('');
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
@@ -36,6 +41,7 @@ function ServicesPage() {
     'BNB — PROJECT BRIEF',
     '',
     'Service: ' + selected,
+    'Package: ' + ({ starter: 'Starter package', growth: 'Growth package', custom: 'Custom scope' }[selectedPackageTierId] || 'To be discussed'),
     'Requirements:',
     requirements.trim() || 'To be discussed',
     '',
@@ -55,6 +61,7 @@ function ServicesPage() {
 
   const chooseService = (label) => {
     setSelected(label);
+    setSelectedPackageTierId('');
     setCopied(false);
     setCopyError(false);
   };
@@ -78,7 +85,7 @@ function ServicesPage() {
           <a href="/#gallery">Design gallery</a>
           <a href="/#store">Tech store</a>
         </nav>
-        <a className="header-cta svc-header-cta" href="#brief">Plan a project <Arrow /></a>
+        <a className="header-cta svc-header-cta" href="#enquiry">Plan a project <Arrow /></a>
       </header>
 
       <main>
@@ -132,6 +139,8 @@ function ServicesPage() {
           </div>
         </section>
 
+        <ServicePackages defaultServiceId={services.find((service) => service.label === selected)?.id || services[0].id} />
+
         <section className="svc-process" id="process">
           <div className="section-wrap">
             <div className="svc-heading svc-process-heading">
@@ -151,8 +160,8 @@ function ServicesPage() {
             <div><div className="eyebrow"><span className="eyebrow-line" /> TWO WAYS TO GET STARTED</div><h2>Your idea.<br /><span>Your way.</span></h2></div>
           </div>
           <div className="svc-option-grid">
-            <div className="svc-option"><span>01 / DEFINED SCOPE</span><h3>Ready-made packages</h3><p>For common project types with a clearly agreed scope, deliverables and timeline. Packages and prices will be shared when their details are finalized.</p><a href="#brief">Prepare your brief <Arrow /></a></div>
-            <div className="svc-option svc-option-dark"><span>02 / TAILORED SCOPE</span><h3>Custom projects</h3><p>For unique requirements. Tell us what you want to build, then we can work through discovery, quotation, milestones and handover.</p><a href="#brief">Describe your project <Arrow /></a></div>
+            <div className="svc-option"><span>01 / DEFINED SCOPE</span><h3>Ready-made packages</h3><p>For common project types with a clearly agreed scope, deliverables and timeline. Packages and prices will be shared when their details are finalized.</p><a href="#packages">Compare packages <Arrow /></a></div>
+            <div className="svc-option svc-option-dark"><span>02 / TAILORED SCOPE</span><h3>Custom projects</h3><p>For unique requirements. Tell us what you want to build, then we can work through discovery, quotation, milestones and handover.</p><a href="#enquiry">Request custom quote <Arrow /></a></div>
           </div>
         </section>
 
@@ -162,7 +171,7 @@ function ServicesPage() {
               <div className="eyebrow"><span className="eyebrow-line" /> START WITH CLARITY</div>
               <h2>Every build starts<br /><span>with a brief.</span></h2>
               <p>Choose your project type and add a few notes. Copy the brief so you have your requirements ready for a conversation.</p>
-              <div className="svc-brief-note">This tool only prepares text in your browser. It does not send or save an enquiry with BNB yet.</div>
+              <div className="svc-brief-note">This preview is for copying only. To send your requirements to BNB, use the enquiry form below.</div>
             </div>
             <div className="svc-brief-form">
               <label htmlFor="svc-service">Service type</label>
@@ -184,6 +193,8 @@ function ServicesPage() {
           services={services}
           selectedServiceId={services.find((service) => service.label === selected)?.id || services[0].id}
           onServiceChange={(id) => chooseService(services.find((service) => service.id === id)?.label || services[0].label)}
+          selectedPackageTierId={selectedPackageTierId}
+          onPackageChange={setSelectedPackageTierId}
         />
       </main>
 

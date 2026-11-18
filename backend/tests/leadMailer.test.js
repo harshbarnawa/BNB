@@ -9,6 +9,7 @@ const lead = {
     phone: "+91 9876543210",
     company: "Sample & Co",
     serviceId: "business",
+    packageTierId: "growth",
     budget: "To discuss",
     requirements: "We need a <responsive> website & an admin panel."
 };
@@ -17,6 +18,7 @@ test("customer thank-you includes reference and escapes HTML", () => {
     const message = buildNotification(lead, "customer");
     assert.deepEqual(message.to, ["customer@example.com"]);
     assert.match(message.text, /507f1f77bcf86cd799439011/);
+    assert.match(message.text, /Package: Growth/);
     assert.match(message.text, /Thank you for reaching out/);
     assert.ok(message.html.includes("Test &lt;Customer&gt;"));
     assert.ok(!message.html.includes("<Customer>"));

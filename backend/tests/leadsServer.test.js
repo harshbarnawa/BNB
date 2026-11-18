@@ -29,6 +29,16 @@ test("enquiries API responds correctly without requiring a database connection",
     });
     assert.equal(invalid.status, 400);
 
+    const unauthorizedPricing = await fetch(origin + "/api/packages/admin");
+    assert.equal(unauthorizedPricing.status, 401);
+
+    const unauthorizedPriceUpdate = await fetch(origin + "/api/packages/business/starter", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ startingPriceINR: 19999, published: true })
+    });
+    assert.equal(unauthorizedPriceUpdate.status, 401);
+
     const payments = await fetch(origin + "/api/payments/order", { method: "POST" });
     assert.equal(payments.status, 404);
 
