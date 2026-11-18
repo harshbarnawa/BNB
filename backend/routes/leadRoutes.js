@@ -3,11 +3,13 @@ const { protect } = require("../middleware/authMiddleware");
 const { admin } = require("../middleware/adminMiddleware");
 const leadRateLimit = require("../middleware/leadRateLimit");
 const { createLead, listLeads, updateLead } = require("../controllers/leadController");
+const { resendLeadNotification } = require("../utils/leadNotifications");
 
 const router = express.Router();
 
 router.post("/", leadRateLimit, createLead);
 router.get("/", protect, admin, listLeads);
 router.patch("/:id", protect, admin, updateLead);
+router.post("/:id/notifications/:audience/retry", protect, admin, resendLeadNotification);
 
 module.exports = router;

@@ -12,10 +12,19 @@ const statuses = [
   ['lost', 'Lost']
 ];
 
+const notificationLabels = {
+  pending: 'Pending',
+  sending: 'Sending',
+  accepted: 'Accepted by email provider',
+  failed: 'Failed',
+  not_configured: 'Email not configured'
+};
+
 function LeadItem({ lead, token, onSaved }) {
   const [status, setStatus] = useState(lead.status);
   const [notes, setNotes] = useState(lead.notes || '');
   const [saving, setSaving] = useState(false);
+  const [retrying, setRetrying] = useState('');
   const [error, setError] = useState('');
 
   const save = async () => {
@@ -35,6 +44,27 @@ function LeadItem({ lead, token, onSaved }) {
     }
   };
 
+  const retryEmail = async (audience) => {
+    setRetrying(audience);
+    setError('');
+    try {
+      const result = await apiRequest('/api/leads/' + encodeURIComponent(lead._id) + '/notifications/' + audience + '/retry', {
+        method: 'POST',
+        token
+      });
+      if (result.status === 'failed' || result.status === 'not_configured') {
+        setError(result.status === 'not_configured'
+          ? 'Email provider settings are not configured on Render yet.'
+          : 'Email provider did not accept this message. Check the email configuration and try again.');
+      }
+      onSaved();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setRetrying('');
+    }
+  };
+
   return (
     <article className="admin-lead">
       <div className="admin-lead-top">
@@ -45,6 +75,20 @@ function LeadItem({ lead, token, onSaved }) {
       {lead.company && <p><b>Company:</b> {lead.company}</p>}
       {lead.budget && <p><b>Budget:</b> {lead.budget}</p>}
       <div className="admin-lead-brief">{lead.requirements}</div>
+      <div className="admin-email-status">
+        <strong>EMAIL NOTIFICATIONS</strong>
+        {['owner', 'customer'].map((audience) => {
+          const status = lead.notifications?.[audience]?.status;
+          const canRetry = !status || ['failed', 'not_configured'].includes(status);
+          return (
+            <div className="admin-email-row" key={audience}>
+              <div><span>{audience === 'owner' ? 'BNB owner alert' : 'Customer thank-you'}</span><small>{status ? notificationLabels[status] || status : 'Not yet tracked'}</small></div>
+              {canRetry && <button type="button" disabled={Boolean(retrying) || saving} onClick={() => retryEmail(audience)}>{retrying === audience ? 'Sending...' : 'Send / retry'}</button>}
+            </div>
+          );
+        })}
+        <p>Email provider acceptance does not guarantee delivery to the recipient's inbox.</p>
+      </div>
       <div className="admin-lead-edit">
         <label>Status<select value={status} onChange={(event) => setStatus(event.target.value)}>{statuses.map(([value, text]) => <option value={value} key={value}>{text}</option>)}</select></label>
         <label>Private notes<textarea rows="3" maxLength="3000" value={notes} onChange={(event) => setNotes(event.target.value)} /></label>

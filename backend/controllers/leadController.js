@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Lead = require("../model/Lead");
-const sendEmail = require("../utils/sendEmail");
+const { sendLeadNotification } = require("../utils/leadNotifications");
 
 const { parseLeadPayload, statuses: leadStatuses } = require("../utils/leadValidation");
 const clean = (value, limit) => typeof value === "string" ? value.trim().slice(0, limit + 1) : "";
@@ -19,30 +19,19 @@ const createLead = async (req, res) => {
         }
 
         const lead = await Lead.create(parsed.value);
-        const { name, email, phone, company, serviceId, budget, requirements } = parsed.value;
+        const results = await Promise.allSettled([
+            sendLeadNotification(lead, "owner"),
+            sendLeadNotification(lead, "customer")
+        ]);
 
-        if (process.env.LEAD_NOTIFICATION_EMAIL && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-            const details = [
-                "New BNB service enquiry",
-                "Lead ID: " + lead.id,
-                "Name: " + name,
-                "Email: " + email,
-                "Phone: " + (phone || "Not supplied"),
-                "Company: " + (company || "Not supplied"),
-                "Service: " + serviceId,
-                "Budget: " + (budget || "Not supplied"),
-                "",
-                "Requirements:",
-                requirements
-            ].join("\n");
-
-            sendEmail(process.env.LEAD_NOTIFICATION_EMAIL, "BNB — New service enquiry", details)
-                .catch((error) => console.error("Lead notification failed:", error.message));
-        }
+        const customer = results[1].status === "fulfilled"
+            ? results[1].value.status
+            : "unavailable";
 
         return res.status(201).json({
             message: "Your enquiry has been received.",
-            reference: lead.id
+            reference: lead.id,
+            confirmationEmail: customer === "accepted" ? "accepted" : "unavailable"
         });
     } catch (error) {
         console.error("Create lead error:", error.message);

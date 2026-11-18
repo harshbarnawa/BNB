@@ -42,7 +42,9 @@ export default function EnquiryForm({ services, selectedServiceId, onServiceChan
       });
       setResult({
         type: 'success',
-        message: 'Enquiry submitted successfully. Reference: ' + payload.reference
+        message: 'Enquiry submitted successfully. Reference: ' + payload.reference + (payload.confirmationEmail === 'accepted'
+          ? ' A thank-you email has been accepted for sending. Check your inbox or spam folder.'
+          : ' Your enquiry is saved. Email confirmation is not available yet.')
       });
       setFields(initialFields);
     } catch (error) {

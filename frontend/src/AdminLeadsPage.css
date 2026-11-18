@@ -31,3 +31,13 @@
 .admin-pages{display:flex;justify-content:center;align-items:center;gap:18px;padding-top:28px;font-size:11px}
 @media(max-width:820px){.admin-lead-grid{grid-template-columns:1fr}}
 @media(max-width:550px){.admin-leads-main{padding-top:60px}.admin-toolbar{align-items:stretch;flex-direction:column}.admin-tools{flex-wrap:wrap}.admin-lead{padding:18px}.admin-lead-top{flex-direction:column;gap:8px}}
+
+.admin-email-status{border:1px solid #dbe7dc;background:#f2f7f2;padding:15px;margin:19px 0}
+.admin-email-status>strong{font:9px var(--mono);letter-spacing:.12em;color:#506b55}
+.admin-email-row{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #dae6dc;padding:12px 0}
+.admin-email-row>div{display:flex;flex-direction:column;gap:5px;min-width:0}
+.admin-email-row span{font-size:11px;font-weight:700}
+.admin-email-row small{font-size:10px;color:#687c6a}
+.admin-email-row button{border:1px solid #bcd0c0;background:white;padding:9px 11px;white-space:nowrap;color:#204a31;font-size:10px;font-weight:700;cursor:pointer}
+.admin-email-row button:disabled{opacity:.5;cursor:not-allowed}
+.admin-email-status>p{color:#829084;font-size:9px;line-height:1.6;margin-bottom:0}
