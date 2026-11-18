@@ -4,7 +4,6 @@ export function StoreProductArt({ product }) {
   const uid = useId().replace(/:/g, '');
   const gradient = 'metal-' + uid;
   const screen = 'screen-' + uid;
-  const dark = '#1c2925';
   const mint = '#16b98a';
   const art = product.art || 'gpu';
 
