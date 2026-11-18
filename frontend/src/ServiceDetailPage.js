@@ -45,7 +45,7 @@ function ServiceDetailPage() {
         <nav className="svc-top-nav" aria-label="Main navigation">
           <a href="/">Home</a>
           <a href="/services" aria-current="page">Services</a>
-          <a href="/#gallery">Design gallery</a>
+          <a href="/gallery">Design gallery</a>
           <a href="/#store">Tech store</a>
         </nav>
         <a className="header-cta svc-header-cta" href={briefLink}>Start a brief <Arrow /></a>
@@ -164,7 +164,7 @@ function ServiceDetailPage() {
         <div className="section-wrap footer-main">
           <a className="brand footer-brand" href="/"><span className="brand-mark">B<span>N</span>B</span><span className="brand-name">BOARD N BYTE</span></a>
           <p>Digital ideas. Real-world tech.<br />Built for what's next.</p>
-          <div className="footer-links"><a href="/">Home</a><a href="/services">Services</a><a href="/#gallery">Design gallery</a><a href="/#store">Tech store</a></div>
+          <div className="footer-links"><a href="/">Home</a><a href="/services">Services</a><a href="/gallery">Design gallery</a><a href="/#store">Tech store</a></div>
           <button className="back-top cat-back-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>BACK TO TOP ↑</button>
         </div>
         <div className="section-wrap footer-bottom"><span>© {new Date().getFullYear()} BNB — BOARD N BYTE</span><span>MADE WITH INTENTION. <b>✳</b></span><span>INDIA</span></div>

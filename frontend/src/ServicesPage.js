@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { services } from './servicesData';
 import EnquiryForm from './EnquiryForm';
 import ServicePackages from './ServicePackages';
+import { getGalleryConcept } from './galleryData';
 import './App.css';
 import './ServicesPage.css';
 
@@ -19,6 +20,10 @@ const Arrow = () => (
 );
 
 function ServicesPage() {
+  const referenceConcept = getGalleryConcept(new URLSearchParams(window.location.search).get('reference'));
+  const referenceMessage = referenceConcept
+    ? 'I like the ' + referenceConcept.title + ' design direction in the BNB gallery (' + referenceConcept.style + '). I would like a ' + referenceConcept.category.toLowerCase() + ' project inspired by that style, adapted to my brand. Please help me plan the scope.'
+    : '';
   const [selected, setSelected] = useState(() => {
     const serviceId = new URLSearchParams(window.location.search).get('service');
     return services.find((service) => service.id === serviceId)?.label || services[0].label;
@@ -27,7 +32,7 @@ function ServicesPage() {
     const tier = new URLSearchParams(window.location.search).get('package');
     return ['starter', 'growth', 'custom'].includes(tier) ? tier : '';
   });
-  const [requirements, setRequirements] = useState('');
+  const [requirements, setRequirements] = useState(referenceMessage);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
 
@@ -82,7 +87,7 @@ function ServicesPage() {
         <nav className="svc-top-nav" aria-label="Main navigation">
           <a href="/">Home</a>
           <a href="/services" aria-current="page">Services</a>
-          <a href="/#gallery">Design gallery</a>
+          <a href="/gallery">Design gallery</a>
           <a href="/#store">Tech store</a>
         </nav>
         <a className="header-cta svc-header-cta" href="#enquiry">Plan a project <Arrow /></a>
@@ -185,6 +190,7 @@ function ServicesPage() {
           onServiceChange={(id) => chooseService(services.find((service) => service.id === id)?.label || services[0].label)}
           selectedPackageTierId={selectedPackageTierId}
           onPackageChange={setSelectedPackageTierId}
+          initialRequirements={referenceMessage}
         />
       </main>
 
@@ -192,7 +198,7 @@ function ServicesPage() {
         <div className="section-wrap footer-main">
           <a className="brand footer-brand" href="/"><span className="brand-mark">B<span>N</span>B</span><span className="brand-name">BOARD N BYTE</span></a>
           <p>Digital ideas. Real-world tech.<br />Built for what's next.</p>
-          <div className="footer-links"><a href="/">Home</a><a href="/services">Services</a><a href="/#gallery">Design gallery</a><a href="/#store">Tech store</a></div>
+          <div className="footer-links"><a href="/">Home</a><a href="/services">Services</a><a href="/gallery">Design gallery</a><a href="/#store">Tech store</a></div>
           <a className="back-top" href="#top" onClick={(event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>BACK TO TOP ↑</a>
         </div>
         <div className="section-wrap footer-bottom"><span>© {new Date().getFullYear()} BNB — BOARD N BYTE</span><span>MADE WITH INTENTION. <b>✳</b></span><span>INDIA</span></div>

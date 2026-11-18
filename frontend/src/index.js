@@ -5,6 +5,7 @@ import App from './App';
 import ServicesPage from './ServicesPage';
 import ServiceDetailPage from './ServiceDetailPage';
 import AdminLeadsPage from './AdminLeadsPage';
+import GalleryPage from './GalleryPage';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,6 +15,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/services/:category" element={<ServiceDetailPage />} />
         <Route path="/admin/leads" element={<AdminLeadsPage />} />
       </Routes>

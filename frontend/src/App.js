@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import GalleryFeed from './GalleryFeed';
 import './App.css';
 
 const ArrowUpRight = () => (
@@ -25,11 +26,6 @@ const products = [
   { category: 'AUDIO', name: 'Audio essentials', detail: 'Hear every detail', mark: '◖', tone: 'dark' },
 ];
 
-const gallery = [
-  { type: 'BUSINESS', title: 'Make your first impression count.', style: 'gallery-business' },
-  { type: 'E-COMMERCE', title: 'A storefront built to sell.', style: 'gallery-store' },
-  { type: 'PORTFOLIO', title: 'Put your best work forward.', style: 'gallery-portfolio' },
-];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -61,7 +57,7 @@ function App() {
           <a href="#about" onClick={closeMenu}>About</a>
         </nav>
 
-        <a className="header-cta" href="/services#brief">
+        <a className="header-cta" href="/services#enquiry">
           Start a project <ArrowUpRight />
         </a>
       </header>
@@ -114,7 +110,7 @@ function App() {
         <section className="services-section section-wrap" id="services">
           <div className="section-heading">
             <div><div className="eyebrow"><span className="eyebrow-line" /> WHAT WE CAN BUILD</div><h2>Big ideas.<br /><span>Built properly.</span></h2></div>
-            <div className="heading-aside"><p>From a sharp online presence to software that solves real problems, we turn ambitious ideas into useful digital experiences.</p><a className="text-link" href="/services#brief">Tell us what you're thinking <ArrowRight /></a></div>
+            <div className="heading-aside"><p>From a sharp online presence to software that solves real problems, we turn ambitious ideas into useful digital experiences.</p><a className="text-link" href="/services#enquiry">Tell us what you're thinking <ArrowRight /></a></div>
           </div>
 
           <div className="service-list">
@@ -129,21 +125,10 @@ function App() {
         <section className="gallery-section" id="gallery">
           <div className="section-wrap">
             <div className="section-heading gallery-heading">
-              <div><div className="eyebrow"><span className="eyebrow-line" /> THE BNB DESIGN GALLERY</div><h2>See it.<br /><span>Make it yours.</span></h2></div>
-              <div className="heading-aside"><p>Explore different directions for your next website. Design directions to spark your next project. Interactive demonstrations are in development.</p><a className="text-link" href="/services#categories">Explore services <ArrowRight /></a></div>
+              <div><div className="eyebrow"><span className="eyebrow-line" /> THE BNB DESIGN GALLERY</div><h2>Find your look.<br /><span>Let's build it.</span></h2></div>
+              <div className="heading-aside"><p>Browse original visual concepts across all six service categories. Pick a style you love and request something tailored to your brand.</p><a className="text-link" href="/gallery">See all design ideas <ArrowRight /></a></div>
             </div>
-            <div className="gallery-grid">
-              {gallery.map((item, index) => <a className="gallery-card" href="/services#categories" key={item.type}>
-                <div className={'gallery-preview ' + item.style}>
-                  <div className="preview-browser"><span /><span /><span /><i>YOUR BRAND</i></div>
-                  {index === 0 && <div className="preview-business"><small>DESIGN WITH PURPOSE</small><b>Built around<br />your business.</b><i>DISCOVER MORE ↗</i></div>}
-                  {index === 1 && <div className="preview-shop"><b>THE EVERYDAY<br /><em>EDIT.</em></b><div className="preview-products"><i /><i /><i /></div></div>}
-                  {index === 2 && <div className="preview-portfolio"><small>CREATIVE DEVELOPER</small><b>Selected<br /><em>works®</em></b><span>2026 — PORTFOLIO</span></div>}
-                </div>
-                <div className="gallery-card-bottom"><div><span>{item.type} WEBSITE</span><h3>{item.title}</h3></div><span className="circle-arrow"><ArrowUpRight /></span></div>
-              </a>)}
-            </div>
-            <p className="gallery-note"><span className="status-pulse" /> DESIGN PREVIEWS · INTERACTIVE DEMOS IN DEVELOPMENT</p>
+            <GalleryFeed compact />
           </div>
         </section>
 
@@ -162,12 +147,12 @@ function App() {
         </section>
 
         <section className="about-band" id="about">
-          <div className="section-wrap about-inner"><div className="eyebrow"><span className="eyebrow-line" /> A LITTLE ABOUT BNB</div><h2>We like making<br />things <span>make sense.</span></h2><div className="about-bottom"><p>BNB brings digital services and useful technology together under one roof. One team, thoughtful work, and a belief that the details matter.</p><a className="button button-light" href="/services#brief">Plan a project <ArrowUpRight /></a></div><div className="about-stamp">BNB<br /><span>BUILD<br />WHAT'S<br />NEXT</span></div></div>
+          <div className="section-wrap about-inner"><div className="eyebrow"><span className="eyebrow-line" /> A LITTLE ABOUT BNB</div><h2>We like making<br />things <span>make sense.</span></h2><div className="about-bottom"><p>BNB brings digital services and useful technology together under one roof. One team, thoughtful work, and a belief that the details matter.</p><a className="button button-light" href="/services#enquiry">Plan a project <ArrowUpRight /></a></div><div className="about-stamp">BNB<br /><span>BUILD<br />WHAT'S<br />NEXT</span></div></div>
         </section>
 
         <section className="contact-section section-wrap" id="contact">
           <div><div className="eyebrow"><span className="eyebrow-line" /> HAVE SOMETHING IN MIND?</div><h2>Let's make<br /><span>it happen.</span></h2></div>
-          <div className="contact-right"><p>Have a project to build, a question to ask, or just want to say hello? Our inbox is open.</p><a className="button button-dark" href="/services#brief">Prepare a project brief <ArrowUpRight /></a><span>ENQUIRY SUBMISSIONS COMING SOON</span></div>
+          <div className="contact-right"><p>Have a project to build, a question to ask, or just want to say hello? Our inbox is open.</p><a className="button button-dark" href="/services#enquiry">Prepare a project brief <ArrowUpRight /></a><span>PROJECT ENQUIRIES ARE OPEN</span></div>
         </section>
       </main>
 

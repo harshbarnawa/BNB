@@ -13,8 +13,8 @@ const initialFields = {
   consent: false
 };
 
-export default function EnquiryForm({ services, selectedServiceId, onServiceChange, selectedPackageTierId, onPackageChange }) {
-  const [fields, setFields] = useState(initialFields);
+export default function EnquiryForm({ services, selectedServiceId, onServiceChange, selectedPackageTierId, onPackageChange, initialRequirements = '' }) {
+  const [fields, setFields] = useState(() => ({ ...initialFields, requirements: initialRequirements }));
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState(null);
   const [packageNames, setPackageNames] = useState({});

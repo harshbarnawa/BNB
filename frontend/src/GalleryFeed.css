@@ -1,0 +1,55 @@
+.inspo-feed{width:100%}
+.inspo-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.inspo-filters{margin-top:47px}
+.inspo-tabs{display:flex;gap:7px;overflow-x:auto;padding:0 0 14px;scrollbar-width:thin}
+.inspo-tabs button{border:1px solid #d3ddd3;background:#fff;color:#607064;font-size:11px;font-weight:700;line-height:1.4;padding:12px 15px;white-space:nowrap;cursor:pointer;flex-shrink:0}
+.inspo-tabs button:hover{border-color:#97b5a0}
+.inspo-tabs button.active{background:#1a251c;border-color:#1a251c;color:#fff}
+.inspo-tabs button span{font:9px var(--mono);margin-left:7px;opacity:.7}
+.inspo-search-row{display:flex;gap:11px;align-items:center;margin:11px 0 32px;flex-wrap:wrap}
+.inspo-search{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #d4ded5;padding:0 14px;height:45px;max-width:320px;min-width:200px;flex:1;color:#677a6b}
+.inspo-search input{border:0;outline:0;background:transparent;width:100%;font:11px var(--sans);color:#1b2a20}
+.inspo-style-control{height:45px;border:1px solid #d4ded5;background:#fff;display:flex;align-items:center}
+.inspo-style-control select{border:0;outline:0;padding:0 13px;background:#fff;min-width:145px;font:11px var(--sans);color:#26392c;cursor:pointer}
+.inspo-count{margin-left:auto;font:9px var(--mono);color:#819184;letter-spacing:.07em}
+.inspo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin-top:26px}
+.inspo-card{border:1px solid #d7e1d7;background:#fff;display:block;text-align:left;cursor:pointer;padding:0;width:100%;color:inherit;min-width:0;transition:transform .23s,box-shadow .23s,border-color .23s;overflow:hidden}
+.inspo-card:hover{transform:translateY(-4px);box-shadow:0 15px 32px #132f1e12;border-color:#b8cdbb}
+.inspo-card:focus-visible{outline:3px solid #16b98a;outline-offset:3px}
+.inspo-card-image{display:block;position:relative;aspect-ratio:1.52;background:#e4e9e2;overflow:hidden}
+.inspo-card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s}
+.inspo-card:hover .inspo-card-image img{transform:scale(1.045)}
+.inspo-image-label{position:absolute;top:12px;left:12px;background:#f9fcf2e8;padding:8px 10px;font:8px var(--mono);letter-spacing:.08em;color:#3d4e40}
+.inspo-image-hover{position:absolute;bottom:12px;right:12px;display:flex;align-items:center;gap:10px;background:#15241d;color:white;padding:11px 13px;font:10px var(--sans);font-weight:700;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s}
+.inspo-card:hover .inspo-image-hover,.inspo-card:focus-visible .inspo-image-hover{opacity:1;transform:none}
+.inspo-card-content{padding:18px 18px 21px;display:block}
+.inspo-card-meta{display:block;font:8px var(--mono);letter-spacing:.09em;color:#7c8a7e;line-height:1.5}
+.inspo-card-meta span{padding:0 5px;color:#a5aca6}
+.inspo-card-title{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-top:10px;font-size:20px;font-weight:700;letter-spacing:-.045em;line-height:1.25}
+.inspo-card-title>span{font-size:19px;font-weight:400;color:#588e66}
+.inspo-card-subtitle{display:block;margin-top:7px;font-size:11px;color:#78847a}
+.inspo-swatches{display:flex;gap:6px;margin-top:15px}
+.inspo-swatches i{width:16px;height:16px;border:1px solid #16251a20;border-radius:50%;display:block}
+.inspo-disclaimer{font:10px/1.75 var(--sans);color:#818c81;margin-top:24px;max-width:670px}
+.inspo-empty{background:#eaf0ea;border:1px solid #d0e0d3;color:#5a735c;padding:35px 25px;font-size:12px}
+.inspo-view-all{margin-top:23px;border-top:1px solid #d5dfd4;border-bottom:1px solid #d5dfd4;padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:18px;font-weight:800;font-size:12px}
+.inspo-view-all span{margin-left:auto;font:9px var(--mono);color:#879588;letter-spacing:.07em}
+.inspo-view-all:hover{color:#16885e}
+.inspo-modal-backdrop{position:fixed;inset:0;background:#0c1510d9;z-index:999;display:grid;place-items:center;padding:22px;overflow-y:auto}
+.inspo-modal{position:relative;width:min(1160px,100%);max-height:calc(100vh - 44px);background:#f9fbf8;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(285px,.85fr);overflow:auto;box-shadow:0 35px 95px #0008}
+.inspo-close{position:absolute;z-index:4;top:12px;right:12px;background:#17271e;color:white;border:0;width:36px;height:36px;cursor:pointer;font-size:17px}
+.inspo-modal-image{background:#e4e8e3;display:flex;align-items:center;justify-content:center;min-height:390px}
+.inspo-modal-image img{width:100%;height:auto;max-height:calc(100vh - 90px);object-fit:contain;display:block}
+.inspo-modal-detail{padding:62px 32px 33px;display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.inspo-modal-label{font:9px var(--mono);line-height:1.7;letter-spacing:.08em;color:#758876}
+.inspo-modal-detail h3{font-size:clamp(36px,4vw,53px);letter-spacing:-.075em;line-height:1;margin:24px 0 14px}
+.inspo-modal-detail p{font-size:12px;line-height:1.85;color:#657468}
+.inspo-modal-palette{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0}
+.inspo-modal-palette span{display:flex;gap:6px;align-items:center;color:#68776b;font:9px var(--mono)}
+.inspo-modal-palette i{display:inline-block;width:20px;height:20px;border:1px solid #1a302422}
+.inspo-modal-cta{display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;padding:17px;background:#17271e;color:white;font-size:12px;font-weight:800;margin-top:auto}
+.inspo-modal-cta:hover{background:#26593e}
+.inspo-modal-detail small{font:10px/1.7 var(--sans);color:#7d897f;margin-top:19px}
+@media(max-width:1050px){.inspo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.inspo-modal{grid-template-columns:1.3fr 1fr}.inspo-modal-detail{padding:55px 25px 26px}}
+@media(max-width:700px){.inspo-grid{grid-template-columns:1fr;gap:14px}.inspo-filters{margin-top:30px}.inspo-tabs{gap:6px}.inspo-tabs button{padding:11px 12px;font-size:10px}.inspo-search-row{margin-bottom:22px}.inspo-search{max-width:none;min-width:140px;flex:1}.inspo-count{width:100%;margin:4px 0 0}.inspo-card-image{aspect-ratio:1.53}.inspo-image-hover{opacity:1;transform:none;font-size:9px}.inspo-modal-backdrop{padding:9px}.inspo-modal{display:block;max-height:calc(100vh - 18px)}.inspo-modal-image{min-height:0}.inspo-modal-image img{max-height:45vh}.inspo-modal-detail{padding:25px 20px 26px}.inspo-modal-detail h3{font-size:37px;margin:16px 0 9px}.inspo-modal-palette{margin:17px 0}.inspo-view-all{font-size:11px}.inspo-view-all span{display:none}}
+@media(prefers-reduced-motion:reduce){.inspo-card,.inspo-card-image img,.inspo-image-hover{transition:none!important}}

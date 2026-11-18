@@ -1,0 +1,25 @@
+.gallery-page{background:#f6f7f4}
+.gallery-top-nav{display:flex;gap:30px;align-items:center;margin-left:auto;margin-right:25px}
+.gallery-top-nav a{font-size:11px;font-weight:700;color:#657168;white-space:nowrap}
+.gallery-top-nav a:hover,.gallery-top-nav a[aria-current=page]{color:#17271e}
+.gallery-top-nav a[aria-current=page]{border-bottom:2px solid #16b98a;padding-bottom:6px}
+.gallery-intro{padding-top:100px;padding-bottom:63px;border-bottom:1px solid #d8e1d8}
+.gallery-intro-top{display:flex;justify-content:space-between;align-items:center;gap:25px}
+.gallery-intro-index{font:10px var(--mono);color:#839184;letter-spacing:.08em;white-space:nowrap}
+.gallery-intro-grid{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.gallery-intro h1{font-size:clamp(62px,7vw,110px);font-weight:600;letter-spacing:-.087em;line-height:1;max-width:770px;margin:30px 0 0}
+.gallery-intro h1 span{color:#a3ada5}
+.gallery-intro-aside{max-width:343px;flex-shrink:0;padding-bottom:8px}
+.gallery-intro-aside p{font-size:13px;line-height:1.9;color:#69766b}
+.gallery-intro-aside a{font-size:11px;font-weight:800;display:inline-flex;align-items:center;gap:11px;margin-top:8px}
+.gallery-intro-aside a:hover{color:#16a27a}
+.gallery-feed-section{padding-top:10px;padding-bottom:110px}
+.gallery-cta-band{background:#17251d;color:#f4f7f3;padding:86px 0}
+.gallery-cta-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:45px}
+.gallery-cta-inner .eyebrow{color:#b6c5b9}
+.gallery-cta-inner h2{font-size:clamp(46px,5vw,70px);line-height:1.07;letter-spacing:-.075em;font-weight:600;margin:24px 0}
+.gallery-cta-inner h2 span{color:#71a38b}
+.gallery-cta-inner p{font-size:12px;line-height:1.9;color:#a9b7aa;max-width:500px}
+.gallery-cta-inner .button{white-space:nowrap;flex-shrink:0}
+@media(max-width:1050px){.gallery-top-nav{gap:16px;margin-right:0}.gallery-intro-grid{display:block}.gallery-intro-aside{max-width:630px;margin-top:26px}}
+@media(max-width:700px){.gallery-top-nav{display:none}.gallery-page .site-header .header-cta{margin-right:0}.gallery-intro{padding-top:67px;padding-bottom:45px}.gallery-intro-top{align-items:start}.gallery-intro-index{font-size:8px}.gallery-intro h1{font-size:clamp(56px,13vw,75px)}.gallery-intro-aside{margin-top:20px}.gallery-feed-section{padding-bottom:75px}.gallery-cta-band{padding:70px 0}.gallery-cta-inner{display:block}.gallery-cta-inner h2{font-size:50px}.gallery-cta-inner .button{margin-top:22px;white-space:normal}}
