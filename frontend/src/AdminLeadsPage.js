@@ -198,7 +198,7 @@ function AdminLeadsPage() {
                 {statuses.map(([value, text]) => <option key={value} value={value}>{text}</option>)}
               </select>
             </label>
-            <div className="admin-tools"><a className="admin-pricing-nav" href="#pricing">Manage pricing ↗</a><span>{total} enquiries</span><button type="button" onClick={() => setRefresh((value) => value + 1)}>Refresh</button><button type="button" onClick={logout}>Log out</button></div>
+            <div className="admin-tools"><a className="admin-pricing-nav" href="#pricing">Manage pricing ↗</a><a className="admin-pricing-nav" href="/admin/store">Manage store ↗</a><span>{total} enquiries</span><button type="button" onClick={() => setRefresh((value) => value + 1)}>Refresh</button><button type="button" onClick={logout}>Log out</button></div>
           </div>
           {busy && <p role="status">Loading enquiries...</p>}
           {!busy && leads.length === 0 && !error && <p className="admin-empty">No enquiries found.</p>}

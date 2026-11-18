@@ -23,7 +23,7 @@ function GalleryPage() {
           <a href="/">Home</a>
           <a href="/services">Services</a>
           <a href="/gallery" aria-current="page">Design gallery</a>
-          <a href="/#store">Tech store</a>
+          <a href="/store">Tech store</a>
         </nav>
         <a className="header-cta" href="/services#enquiry">Start a project <Arrow /></a>
       </header>
@@ -63,7 +63,7 @@ function GalleryPage() {
         <div className="section-wrap footer-main">
           <a className="brand footer-brand" href="/"><img className="brand-logo" src="/brand/bnb-logo.svg" alt="" width="76" height="48" decoding="async" /><span className="brand-name">BOARD N BYTE</span></a>
           <p>Digital ideas. Real-world tech.<br />Built for what's next.</p>
-          <div className="footer-links"><a href="/">Home</a><a href="/services">Services</a><a href="/gallery">Design gallery</a><a href="/#store">Tech store</a></div>
+          <div className="footer-links"><a href="/">Home</a><a href="/services">Services</a><a href="/gallery">Design gallery</a><a href="/store">Tech Store</a><a href="/privacy">Privacy notice</a><a href="mailto:contact.boardnbyte@gmail.com">Email BNB</a></div>
           <a className="back-top" href="#top" onClick={(event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>BACK TO TOP ↑</a>
         </div>
         <div className="section-wrap footer-bottom"><span>© {new Date().getFullYear()} BNB — BOARD N BYTE</span><span>DESIGN WITH INTENTION. <b>✳</b></span><span>INDIA</span></div>

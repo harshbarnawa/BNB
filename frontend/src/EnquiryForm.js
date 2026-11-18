@@ -82,7 +82,7 @@ export default function EnquiryForm({ services, selectedServiceId, onServiceChan
         <div className="enquiry-intro">
           <div className="eyebrow"><span className="eyebrow-line" /> LET'S TALK ABOUT YOUR PROJECT</div>
           <h2 id="enquiry-heading">A real project<br /><span>starts here.</span></h2>
-          <p>Tell us a little about what you are building. When submissions are enabled, your enquiry is saved securely for follow-up by BNB.</p>
+          <p>Tell us what you're building. Your enquiry is sent securely to BNB for a personal follow-up.</p>
           <div className="enquiry-info">
             <strong>What happens next?</strong>
             <p>We'll review the brief, discuss requirements, then share a proposal and quotation where appropriate. Sending an enquiry is not a paid booking.</p>
@@ -113,7 +113,7 @@ export default function EnquiryForm({ services, selectedServiceId, onServiceChan
           <div className="enquiry-field"><label htmlFor="enquiry-budget">Estimated budget (optional)</label><input id="enquiry-budget" value={fields.budget} onChange={(e) => update('budget', e.target.value)} maxLength="80" placeholder="Your range, or leave blank" /></div>
           <div className="enquiry-field"><label htmlFor="enquiry-requirements">Project requirements *</label><textarea id="enquiry-requirements" rows="5" value={fields.requirements} onChange={(e) => update('requirements', e.target.value)} minLength="20" maxLength="3000" required placeholder="What would you like to build, and what should it help you achieve?" /></div>
           <div className="enquiry-honeypot" aria-hidden="true"><label htmlFor="enquiry-website">Website</label><input id="enquiry-website" value={fields.website} onChange={(e) => update('website', e.target.value)} tabIndex="-1" autoComplete="off" /></div>
-          <label className="enquiry-consent"><input type="checkbox" checked={fields.consent} onChange={(e) => update('consent', e.target.checked)} required /><span>I agree to BNB storing my contact information and project details to respond to this enquiry. *</span></label>
+          <label className="enquiry-consent"><input type="checkbox" checked={fields.consent} onChange={(e) => update('consent', e.target.checked)} required /><span>I agree to BNB using my contact information and project details to respond to this enquiry, as explained in our <a href="/privacy" target="_blank" rel="noopener noreferrer">Privacy Notice</a>. *</span></label>
           {!apiEnabled && <div className="enquiry-not-live" role="status">Online enquiry submissions are being configured. You can still prepare and copy a project brief above.</div>}
           <button className="enquiry-submit" type="submit" disabled={!apiEnabled || submitting}>{submitting ? 'Submitting...' : 'Send project enquiry'} <span aria-hidden="true">↗</span></button>
           {result && <p className={result.type === 'success' ? 'enquiry-result success' : 'enquiry-result error'} role="status">{result.message}</p>}

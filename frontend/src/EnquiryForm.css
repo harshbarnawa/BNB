@@ -29,3 +29,5 @@
 .svc-send-link:hover{background:#e4efe6}
 @media(max-width:900px){.enquiry-layout{grid-template-columns:1fr;gap:35px}.enquiry-intro h2{font-size:55px}.enquiry-info{margin-top:25px}.enquiry-form{max-width:760px}}
 @media(max-width:550px){.enquiry-section{padding:76px 0}.enquiry-form{padding:20px;gap:17px}.enquiry-fields-two{grid-template-columns:1fr;gap:17px}.enquiry-intro h2{font-size:50px}.enquiry-form-heading{font-size:8px}}
+
+.enquiry-consent a{color:#118158;text-decoration:underline;text-underline-offset:2px;font-weight:700}

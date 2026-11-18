@@ -39,6 +39,28 @@ test("enquiries API responds correctly without requiring a database connection",
     });
     assert.equal(unauthorizedPriceUpdate.status, 401);
 
+    const forbiddenStoreList = await fetch(origin + "/api/store/admin/products");
+    assert.equal(forbiddenStoreList.status, 401);
+
+    const forbiddenStoreCreate = await fetch(origin + "/api/store/admin/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: "Fake listing" })
+    });
+    assert.equal(forbiddenStoreCreate.status, 401);
+
+    const forbiddenStoreEdit = await fetch(origin + "/api/store/admin/products/507f1f77bcf86cd799439011", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: "Fake listing" })
+    });
+    assert.equal(forbiddenStoreEdit.status, 401);
+
+    const forbiddenStoreDelete = await fetch(origin + "/api/store/admin/products/507f1f77bcf86cd799439011", {
+        method: "DELETE"
+    });
+    assert.equal(forbiddenStoreDelete.status, 401);
+
     const payments = await fetch(origin + "/api/payments/order", { method: "POST" });
     assert.equal(payments.status, 404);
 

@@ -22,6 +22,7 @@ app.use("/api/payments", require("./routes/paymentRoutes.js"));
 app.use("/api/analytics", require("./routes/analyticsRoutes.js"));
 app.use("/api/leads", require("./routes/leadRoutes.js"));
 app.use("/api/packages", require("./routes/servicePackageRoutes.js"));
+app.use("/api/store", require("./routes/storeRoutes.js"));
 
 app.use((error, req, res, next) => {
     console.error("API error:", error.message);

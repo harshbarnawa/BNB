@@ -6,6 +6,9 @@ import ServicesPage from './ServicesPage';
 import ServiceDetailPage from './ServiceDetailPage';
 import AdminLeadsPage from './AdminLeadsPage';
 import GalleryPage from './GalleryPage';
+import PrivacyPage from './PrivacyPage';
+import StorePage from './StorePage';
+import AdminStorePage from './AdminStorePage';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,6 +19,9 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/store" element={<StorePage />} />
+        <Route path="/admin/store" element={<AdminStorePage />} />
         <Route path="/services/:category" element={<ServiceDetailPage />} />
         <Route path="/admin/leads" element={<AdminLeadsPage />} />
       </Routes>

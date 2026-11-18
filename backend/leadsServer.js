@@ -34,7 +34,7 @@ app.use(cors({
         error.status = 403;
         return callback(error);
     },
-    methods: ["GET", "POST", "PATCH", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
@@ -56,6 +56,7 @@ app.get("/health", (req, res) => {
 
 app.post("/api/auth/login", leadRateLimit, loginUser);
 app.use("/api/packages", require("./routes/servicePackageRoutes"));
+app.use("/api/store", require("./routes/storeRoutes"));
 app.use("/api/leads", leadRoutes);
 
 app.use((req, res) => {

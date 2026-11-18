@@ -34,7 +34,7 @@ function ServiceDetailPage() {
       <div className="announcement">
         <span className="announcement-dot" />
         <span>BOARD N BYTE / DIGITAL SERVICES</span>
-        <a href="/#store">VISIT THE TECH STORE <Arrow /></a>
+        <a href="/store">VISIT THE TECH STORE <Arrow /></a>
       </div>
 
       <header className="site-header svc-header">
@@ -46,7 +46,7 @@ function ServiceDetailPage() {
           <a href="/">Home</a>
           <a href="/services" aria-current="page">Services</a>
           <a href="/gallery">Design gallery</a>
-          <a href="/#store">Tech store</a>
+          <a href="/store">Tech store</a>
         </nav>
         <a className="header-cta svc-header-cta" href={briefLink}>Start a brief <Arrow /></a>
       </header>
@@ -137,7 +137,7 @@ function ServiceDetailPage() {
               <div className="eyebrow"><span className="eyebrow-line" /> THE NEXT STEP</div>
               <h2>Have an idea?<br /><span>Give it direction.</span></h2>
               <p>Share the essentials in a project brief. We can use it as a starting point to discuss scope and a quotation.</p>
-              <div className="cat-honesty">Enquiry submissions work only after the BNB backend is configured. A project brief is not a confirmed booking or quotation.</div>
+              <div className="cat-honesty">Sending an enquiry does not confirm a booking, price or delivery date. We'll discuss these details before beginning any work.</div>
             </div>
             <a className="button button-light" href={briefLink}>Prepare your {service.label.toLowerCase()} brief <Arrow /></a>
           </div>
@@ -164,7 +164,7 @@ function ServiceDetailPage() {
         <div className="section-wrap footer-main">
           <a className="brand footer-brand" href="/"><img className="brand-logo" src="/brand/bnb-logo.svg" alt="" width="76" height="48" decoding="async" /><span className="brand-name">BOARD N BYTE</span></a>
           <p>Digital ideas. Real-world tech.<br />Built for what's next.</p>
-          <div className="footer-links"><a href="/">Home</a><a href="/services">Services</a><a href="/gallery">Design gallery</a><a href="/#store">Tech store</a></div>
+          <div className="footer-links"><a href="/">Home</a><a href="/services">Services</a><a href="/gallery">Design gallery</a><a href="/store">Tech Store</a><a href="/privacy">Privacy notice</a><a href="mailto:contact.boardnbyte@gmail.com">Email BNB</a></div>
           <button className="back-top cat-back-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>BACK TO TOP ↑</button>
         </div>
         <div className="section-wrap footer-bottom"><span>© {new Date().getFullYear()} BNB — BOARD N BYTE</span><span>MADE WITH INTENTION. <b>✳</b></span><span>INDIA</span></div>

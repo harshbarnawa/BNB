@@ -1,6 +1,18 @@
 {
   "rewrites": [
     {
+      "source": "/admin/store",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/store",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/index.html"
+    },
+    {
       "source": "/gallery",
       "destination": "/index.html"
     },

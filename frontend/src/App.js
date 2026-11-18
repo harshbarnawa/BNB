@@ -20,12 +20,6 @@ const services = [
   { number: '03', title: 'Software without limits.', description: 'Purpose-built web apps and tools for the way your business works.', tag: 'CUSTOM SOFTWARE', icon: '⌘' },
 ];
 
-const products = [
-  { category: 'KEYBOARDS', name: 'Mechanical keyboards', detail: 'Built for every keystroke', mark: '⌨', tone: 'mint' },
-  { category: 'MICE', name: 'Precision mice', detail: 'Move with intention', mark: '◉', tone: 'silver' },
-  { category: 'AUDIO', name: 'Audio essentials', detail: 'Hear every detail', mark: '◖', tone: 'dark' },
-];
-
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -53,7 +47,7 @@ function App() {
         <nav className={menuOpen ? 'main-nav nav-open' : 'main-nav'}>
           <a href="/services" onClick={closeMenu}>Services</a>
           <a href="#gallery" onClick={closeMenu}>Design gallery</a>
-          <a href="#store" onClick={closeMenu}>Store</a>
+          <a href="/store" onClick={closeMenu}>Store</a>
           <a href="#about" onClick={closeMenu}>About</a>
         </nav>
 
@@ -88,7 +82,7 @@ function App() {
               <div className="panel-bottom"><div><h2>Digital Services</h2><p>Websites, software & digital experiences.</p></div><span className="circle-arrow"><ArrowUpRight /></span></div>
             </a>
 
-            <a className="hero-panel panel-store" href="#store">
+            <a className="hero-panel panel-store" href="/store">
               <div className="panel-top"><span>02 / TECH STORE</span><span className="panel-arrow"><ArrowUpRight /></span></div>
               <div className="store-art" aria-hidden="true">
                 <div className="keyboard">
@@ -132,18 +126,24 @@ function App() {
           </div>
         </section>
 
-        <section className="store-section section-wrap" id="store">
-          <div className="store-intro">
-            <div><div className="eyebrow"><span className="eyebrow-line" /> THE BNB TECH STORE</div><h2>Good gear.<br /><span>Better flow.</span></h2></div>
-            <div className="heading-aside"><p>Thoughtful tech essentials for your workspace, your setup and everything you create with it.</p><a className="text-link" href="#contact">Get store updates <ArrowRight /></a></div>
+        <section className="store-section section-wrap" id="store" aria-labelledby="store-heading">
+          <div className="store-coming-soon">
+            <div className="store-coming-copy">
+              <div className="eyebrow"><span className="eyebrow-line" /> 02 / THE BNB TECH STORE</div>
+              <span className="store-launch-label"><span className="status-pulse" /> STORE EXPERIENCE LIVE</span>
+              <h2 id="store-heading">Good gear.<br /><span>Meet your setup.</span></h2>
+              <p>Explore our retail-style Tech Store, discover PC parts and peripherals, and try the working shopping experience. Demo items are illustrative; real listings will roll out in phases.</p>
+              <div className="store-launch-actions">
+                <a className="button button-dark" href="/store">Explore BNB Tech Store <ArrowUpRight /></a>
+                <a className="text-link" href="mailto:contact.boardnbyte@gmail.com?subject=BNB%20Tech%20Enquiry">Ask us about tech <ArrowRight /></a>
+              </div>
+            </div>
+            <div className="store-coming-visual" aria-hidden="true">
+              <div className="store-orbit-one" /><div className="store-orbit-two" />
+              <span className="store-big-symbol">⌘</span>
+              <div className="store-visual-label">BOARD N BYTE / TECH STORE <span>READY TO EXPLORE ✳</span></div>
+            </div>
           </div>
-          <div className="product-grid">
-            {products.map((product) => <a className="product-card" href="#contact" key={product.name}>
-              <div className={'product-visual product-' + product.tone}><span className="product-category">{product.category}</span><div className="product-object">{product.mark}</div><span className="product-plus"><ArrowUpRight /></span></div>
-              <div className="product-info"><div><h3>{product.name}</h3><p>{product.detail}</p></div><ArrowUpRight /></div>
-            </a>)}
-          </div>
-          <div className="store-foot"><span>THE RIGHT TOOLS MAKE ALL THE DIFFERENCE.</span><span>STORE LAUNCHING IN PHASES <i>↗</i></span></div>
         </section>
 
         <section className="about-band" id="about">
@@ -152,12 +152,12 @@ function App() {
 
         <section className="contact-section section-wrap" id="contact">
           <div><div className="eyebrow"><span className="eyebrow-line" /> HAVE SOMETHING IN MIND?</div><h2>Let's make<br /><span>it happen.</span></h2></div>
-          <div className="contact-right"><p>Have a project to build, a question to ask, or just want to say hello? Our inbox is open.</p><a className="button button-dark" href="/services#enquiry">Prepare a project brief <ArrowUpRight /></a><span>PROJECT ENQUIRIES ARE OPEN</span></div>
+          <div className="contact-right"><p>Have a project to build, a question to ask, or just want to say hello? Our inbox is open.</p><a className="contact-direct-link" href="mailto:contact.boardnbyte@gmail.com">contact.boardnbyte@gmail.com <ArrowUpRight /></a><a className="button button-dark" href="/services#enquiry">Send a project enquiry <ArrowUpRight /></a><span>PROJECT ENQUIRIES ARE OPEN</span></div>
         </section>
       </main>
 
       <footer className="site-footer">
-        <div className="section-wrap footer-main"><a className="brand footer-brand" href="#home"><img className="brand-logo" src="/brand/bnb-logo.svg" alt="" width="76" height="48" decoding="async" /><span className="brand-name">BOARD N BYTE</span></a><p>Digital ideas. Real-world tech.<br />Built for what's next.</p><div className="footer-links"><a href="/services">Services</a><a href="#gallery">Design gallery</a><a href="#store">Store</a><a href="#contact">Contact</a></div><a className="back-top" href="#home">BACK TO TOP ↑</a></div>
+        <div className="section-wrap footer-main"><a className="brand footer-brand" href="#home"><img className="brand-logo" src="/brand/bnb-logo.svg" alt="" width="76" height="48" decoding="async" /><span className="brand-name">BOARD N BYTE</span></a><p>Digital ideas. Real-world tech.<br />Built for what's next.</p><div className="footer-links"><a href="/services">Services</a><a href="#gallery">Design gallery</a><a href="/store">Tech Store</a><a href="#contact">Contact</a><a href="/privacy">Privacy notice</a><a href="mailto:contact.boardnbyte@gmail.com">Email BNB</a></div><a className="back-top" href="#home">BACK TO TOP ↑</a></div>
         <div className="section-wrap footer-bottom"><span>© {new Date().getFullYear()} BNB — BOARD N BYTE</span><span>MADE WITH INTENTION. <b>✳</b></span><span>INDIA</span></div>
       </footer>
     </div>
