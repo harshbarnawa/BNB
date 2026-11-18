@@ -58,9 +58,9 @@ function ServicePackages({ serviceId, defaultServiceId }) {
         <div className="pkg-heading">
           <div>
             <div className="eyebrow"><span className="eyebrow-line" /> TRANSPARENT OPTIONS / FLEXIBLE SCOPE</div>
-            <h2 id="pkg-heading">Choose a direction.<br /><span>Shape the details.</span></h2>
+            <h2 id="pkg-heading">Simple options.<br /><span>Clear next steps.</span></h2>
           </div>
-          <p>Explore what a project could include. Starting prices, if shown, are indicative—not final quotations. Exact scope and milestones are agreed before any payment.</p>
+          <p>Choose a service and compare two packages. For something different, request a custom quote. We confirm the final scope and price before work begins.</p>
         </div>
 
         {!serviceId && (
@@ -86,41 +86,51 @@ function ServicePackages({ serviceId, defaultServiceId }) {
         {!loading && !error && chosenPackages.length === 0 && <p className="pkg-state">No packages are currently available for this service.</p>}
 
         {!loading && !error && chosenPackages.length > 0 && (
-          <div className="pkg-grid">
-            {chosenPackages.map((item, index) => (
-              <article className={index === 1 ? 'pkg-card pkg-card-featured' : 'pkg-card'} key={item.serviceId + item.tierId}>
-                <div className="pkg-card-top">
-                  <span>0{index + 1} / {item.tierId === 'custom' ? 'TAILORED' : 'DEFINED SCOPE'}</span>
-                  {index === 1 && <span className="pkg-popular">MORE POSSIBILITIES ✳</span>}
-                </div>
-                <h3>{item.title}</h3>
-                <p className="pkg-tagline">{item.tagline}</p>
-                <div className="pkg-price">
-                  {item.startingPriceINR != null ? (
-                    <>
-                      <span>STARTING FROM</span>
-                      <strong>{money.format(item.startingPriceINR)}</strong>
-                    </>
-                  ) : (
-                    <>
-                      <span>{item.tierId === 'custom' ? 'TAILORED PRICING' : 'PRICE ON REQUEST'}</span>
-                      <strong>Let&apos;s talk.</strong>
-                    </>
-                  )}
-                </div>
-                <div className="pkg-audience">SUITABLE FOR <strong>{item.bestFor}</strong></div>
-                <div className="pkg-features">
-                  <span>TYPICAL SCOPE</span>
-                  <ul>
-                    {item.scope.map((feature) => <li key={feature}><span aria-hidden="true">✓</span>{feature}</li>)}
-                  </ul>
-                </div>
-                <a className="pkg-quote-link" href={quoteLink(item.tierId)}>
-                  {item.tierId === 'custom' ? 'Request a custom quote' : 'Request this package'} <Arrow />
-                </a>
-              </article>
-            ))}
-          </div>
+          <>
+            <div className="pkg-grid">
+              {chosenPackages.filter((item) => item.tierId !== 'custom').map((item, index) => (
+                <article className={index === 1 ? 'pkg-card pkg-card-featured' : 'pkg-card'} key={item.serviceId + item.tierId}>
+                  <div className="pkg-card-top">
+                    <span>0{index + 1} / PACKAGE</span>
+                    {index === 1 && <span className="pkg-popular">MORE FEATURES ✳</span>}
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p className="pkg-tagline">{item.tagline}</p>
+                  <div className="pkg-price">
+                    {item.startingPriceINR != null ? (
+                      <>
+                        <span>STARTING FROM</span>
+                        <strong>{money.format(item.startingPriceINR)}</strong>
+                      </>
+                    ) : (
+                      <>
+                        <span>PRICE ON REQUEST</span>
+                        <strong>Let's talk.</strong>
+                      </>
+                    )}
+                  </div>
+                  <div className="pkg-audience">BEST FOR <strong>{item.bestFor}</strong></div>
+                  <div className="pkg-features">
+                    <span>WHAT'S INCLUDED IN A TYPICAL PROJECT</span>
+                    <ul>
+                      {item.scope.map((feature) => <li key={feature}><span aria-hidden="true">✓</span>{feature}</li>)}
+                    </ul>
+                  </div>
+                  <a className="pkg-quote-link" href={quoteLink(item.tierId)}>
+                    Request this package <Arrow />
+                  </a>
+                </article>
+              ))}
+            </div>
+            <div className="pkg-custom-strip">
+              <div>
+                <span>NEED SOMETHING DIFFERENT?</span>
+                <h3>Custom project? We've got you.</h3>
+                <p>Tell us what you need. We'll discuss the scope and share a personal quote.</p>
+              </div>
+              <a href={quoteLink('custom')}>Get a custom quote <Arrow /></a>
+            </div>
+          </>
         )}
         <p className="pkg-disclaimer">No instant checkout or automatic payment. Every project requires scope confirmation and an agreed written quotation.</p>
       </div>

@@ -155,16 +155,6 @@ function ServicesPage() {
           </div>
         </section>
 
-        <section className="section-wrap svc-options">
-          <div className="svc-heading">
-            <div><div className="eyebrow"><span className="eyebrow-line" /> TWO WAYS TO GET STARTED</div><h2>Your idea.<br /><span>Your way.</span></h2></div>
-          </div>
-          <div className="svc-option-grid">
-            <div className="svc-option"><span>01 / DEFINED SCOPE</span><h3>Ready-made packages</h3><p>For common project types with a clearly agreed scope, deliverables and timeline. Packages and prices will be shared when their details are finalized.</p><a href="#packages">Compare packages <Arrow /></a></div>
-            <div className="svc-option svc-option-dark"><span>02 / TAILORED SCOPE</span><h3>Custom projects</h3><p>For unique requirements. Tell us what you want to build, then we can work through discovery, quotation, milestones and handover.</p><a href="#enquiry">Request custom quote <Arrow /></a></div>
-          </div>
-        </section>
-
         <section className="svc-brief-section" id="brief">
           <div className="section-wrap svc-brief-layout">
             <div className="svc-brief-intro">

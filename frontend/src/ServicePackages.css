@@ -7,7 +7,7 @@
 .pkg-tab{flex-shrink:0;padding:13px 17px;border:1px solid #cfdbcf;background:transparent;color:#667668;font:11px var(--sans);font-weight:700;cursor:pointer;white-space:nowrap}
 .pkg-tab:hover{border-color:#9eb9a5}
 .pkg-tab.selected{background:#18251c;border-color:#18251c;color:white}
-.pkg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px}
+.pkg-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:40px}
 .pkg-card{border:1px solid #d6e0d6;background:#fff;min-width:0;min-height:530px;padding:26px;display:flex;flex-direction:column}
 .pkg-card-featured{background:#e3eee5;border-color:#a9d7ba}
 .pkg-card-top{display:flex;justify-content:space-between;gap:10px;font:9px var(--mono);letter-spacing:.06em;color:#7f8c80;min-height:22px}
@@ -32,3 +32,11 @@
 @media(max-width:1000px){.pkg-grid{gap:10px}.pkg-card{padding:20px}.pkg-card h3{font-size:28px}}
 @media(max-width:820px){.pkg-heading{display:block}.pkg-heading>p{margin-top:20px;max-width:530px}.pkg-grid{grid-template-columns:1fr 1fr}.pkg-card{min-height:500px}}
 @media(max-width:600px){.pkg-section{padding:75px 0 85px}.pkg-heading h2{font-size:50px}.pkg-service-tabs{margin-top:25px}.pkg-tab{font-size:10px;padding:12px 14px}.pkg-grid{grid-template-columns:1fr;margin-top:25px}.pkg-card{min-height:0;padding:25px}.pkg-card h3{margin-top:24px}.pkg-tagline{min-height:0}.pkg-features ul{margin-bottom:32px}}
+
+.pkg-custom-strip{margin-top:16px;border:1px solid #c6d9c9;background:#e7eee8;padding:26px 30px;display:flex;justify-content:space-between;align-items:center;gap:30px}
+.pkg-custom-strip>div>span{font:9px var(--mono);color:#5e8a6d;letter-spacing:.09em}
+.pkg-custom-strip h3{font-size:25px;letter-spacing:-.05em;margin:9px 0 5px;line-height:1.2}
+.pkg-custom-strip p{font-size:11px;line-height:1.65;color:#66776b;margin:0}
+.pkg-custom-strip a{background:#14221a;color:#fff;padding:16px 20px;min-width:210px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:800;gap:12px}
+.pkg-custom-strip a:hover{background:#24513b}
+@media(max-width:600px){.pkg-custom-strip{padding:22px;display:block}.pkg-custom-strip a{margin-top:19px;width:100%;min-width:0}.pkg-custom-strip h3{font-size:23px}}
