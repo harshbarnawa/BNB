@@ -61,6 +61,7 @@ function StorePage() {
   const [sort, setSort] = useState('featured');
   const [maxPrice, setMaxPrice] = useState(100000);
   const [savedOnly, setSavedOnly] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [saved, setSaved] = useState([]);
   const [cart, setCart] = useState({});
   const [bagOpen, setBagOpen] = useState(false);
@@ -188,54 +189,34 @@ function StorePage() {
       </nav>
 
       <main>
-        <section className="shop-hero shop-container">
-          <div className="shop-hero-copy">
-            <div className="shop-eyebrow">TECH / MADE FOR WHAT'S NEXT <span className="shop-eyebrow-line" /></div>
-            <h1>Make your<br /><span>setup matter.</span></h1>
-            <p>A thoughtfully designed space for PC parts, peripherals and the tech behind your everyday ideas. Explore the store experience—new collections are coming in phases.</p>
-            <div className="shop-hero-actions">
-              <button type="button" className="shop-hero-primary" onClick={() => document.getElementById('shop-products')?.scrollIntoView({ behavior: 'smooth' })}>Explore collection <Arrow /></button>
-              <a href="/services?service=commerce&package=custom#enquiry">Build an e-commerce site <Arrow /></a>
-            </div>
-            <div className="shop-hero-foot">BNB / BOARD N BYTE <span>✳</span> DIGITAL & PHYSICAL, TOGETHER.</div>
+        <section className="shop-retail-promo shop-container" aria-label="Explore BNB tech">
+          <div className="shop-retail-promo-copy">
+            <span className="shop-eyebrow">BOARD N BYTE / YOUR TECH DESTINATION</span>
+            <h1>Tech for every setup<span>.</span></h1>
+            <p>PC components, peripherals, laptops and more — discover your next upgrade.</p>
           </div>
-          <div className="shop-hero-art">
-            <span className="shop-hero-art-kicker">01 / DESK SETUP EDIT</span>
-            <StoreProductArt product={demoProducts[0]} />
-            <span className="shop-hero-orbit shop-hero-orbit-one" />
-            <span className="shop-hero-orbit shop-hero-orbit-two" />
-            <div className="shop-hero-art-bottom"><span>FIND YOUR FLOW.</span><span>⌘</span></div>
-          </div>
+          <a href="#shop-products" className="shop-retail-promo-link">Browse the collection <Arrow /></a>
+          <div className="shop-retail-decoration" aria-hidden="true"><span>BNB</span><i>✳</i></div>
         </section>
 
-        <section className="shop-trust shop-container" aria-label="Store information">
-          <div><span>✳</span><strong>Built around builders</strong><small>Tech for work, play & creation</small></div>
-          <div><span>⌘</span><strong>Explore the full range</strong><small>Components, setups & peripherals</small></div>
-          <div><span>↗</span><strong>Shopping in phases</strong><small>No on-site checkout yet</small></div>
-        </section>
-
-        <section className="shop-collections shop-container" aria-labelledby="shop-categories-heading">
-          <div className="shop-section-header">
-            <div><span className="shop-eyebrow">FIND WHAT FITS YOUR SETUP</span><h2 id="shop-categories-heading">Shop by category<span>.</span></h2></div>
-            <p>Find a direction, narrow your search and explore products made for how you work and play.</p>
-          </div>
-          <div className="shop-category-grid">
-            {storeCategories.filter((item) => item.id !== 'all').map((item) => {
-              const example = demoProducts.find((p) => p.category === item.id);
-              return (
-                <button type="button" className="shop-category-tile" key={item.id} onClick={() => { setCategory(item.id); setSavedOnly(false); document.getElementById('shop-products')?.scrollIntoView({ behavior: 'smooth' }); }}>
-                  <div className="shop-category-tile-art"><StoreProductArt product={example || demoProducts[0]} /></div>
-                  <div><strong>{item.name}</strong><span>Explore <Arrow /></span></div>
-                </button>
-              );
-            })}
+        <section className="shop-shortcuts shop-container" aria-label="Quick shop by category">
+          <div className="shop-shortcuts-heading"><strong>Shop by category</strong><span>Explore tech essentials</span></div>
+          <div className="shop-shortcuts-scroll">
+            {storeCategories.filter((item) => item.id !== 'all').map((item) => (
+              <button className={category === item.id ? 'shop-shortcut selected' : 'shop-shortcut'} type="button" key={item.id}
+                onClick={() => { setCategory(item.id); setSavedOnly(false); document.getElementById('shop-products')?.scrollIntoView({ behavior: 'smooth' }); }}
+                aria-pressed={category === item.id}>
+                <span className="shop-shortcut-icon" aria-hidden="true">{item.icon}</span>
+                <span>{item.name}</span>
+              </button>
+            ))}
           </div>
         </section>
 
         <section className="shop-market" id="shop-products" aria-labelledby="shop-products-heading">
           <div className="shop-container">
             <div className="shop-section-header shop-market-header">
-              <div><span className="shop-eyebrow">CURATED FOR YOU / THE COLLECTION</span><h2 id="shop-products-heading">Find your next upgrade<span>.</span></h2></div>
+              <div><span className="shop-eyebrow">SHOP BNB / PRODUCT CATALOGUE</span><h2 id="shop-products-heading">Explore products<span>.</span></h2></div>
               <a href="/services?service=commerce&package=custom#enquiry">Want a storefront like this? <Arrow /></a>
             </div>
 
@@ -255,8 +236,12 @@ function StorePage() {
               </div>
             )}
 
+            <button type="button" className="shop-filter-toggle" aria-expanded={filtersOpen} aria-controls="shop-filter-options"
+              onClick={() => setFiltersOpen((open) => !open)}>
+              <span>☷ &nbsp; Filters &amp; price</span><span>{filtersOpen ? 'Hide −' : 'Show +'}</span>
+            </button>
             <div className="shop-market-layout">
-              <aside className="shop-filter-panel">
+              <aside id="shop-filter-options" className={filtersOpen ? 'shop-filter-panel is-open' : 'shop-filter-panel'}>
                 <div className="shop-filter-head"><h3>Filters</h3><button type="button" onClick={() => { setCategory('all'); setSavedOnly(false); setMaxPrice(100000); setQuery(''); }}>Clear all</button></div>
                 <div className="shop-filter-section"><h4>Categories</h4>
                   {storeCategories.map((item) => (
