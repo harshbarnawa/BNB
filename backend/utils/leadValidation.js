@@ -18,11 +18,13 @@ function parseLeadPayload(body) {
     const budget = normal(body.budget, 80);
     const requirements = normal(body.requirements, 3000);
     const packageTierId = normal(body.packageTierId, 30);
+    const invalidPackageType = body.packageTierId !== undefined && typeof body.packageTierId !== 'string';
 
     if (name.length < 2 || name.length > 100 || email.length > 254 ||
         !emailPattern.test(email) || phone.length > 30 || company.length > 100 ||
         budget.length > 80 || !serviceIds.has(serviceId) ||
         requirements.length < 20 || requirements.length > 3000 || body.consent !== true ||
+        invalidPackageType ||
         (packageTierId !== "" && !validPackage(serviceId, packageTierId))) {
         return { error: 'Please check your contact details, service, requirements and consent.' };
     }
