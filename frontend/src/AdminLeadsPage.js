@@ -176,7 +176,7 @@ function AdminLeadsPage() {
   return (
     <div className="site-shell admin-leads-page">
       <header className="site-header">
-        <a className="brand" href="/"><span className="brand-mark">B<span>N</span>B</span><span className="brand-name">BOARD N BYTE</span></a>
+        <a className="brand" href="/"><img className="brand-logo" src="/brand/bnb-logo.svg" alt="" width="76" height="48" decoding="async" /><span className="brand-name">BOARD N BYTE</span></a>
         <a className="admin-exit" href="/services">← Back to services</a>
       </header>
       <main className="section-wrap admin-leads-main">

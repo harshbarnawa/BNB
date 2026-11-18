@@ -42,7 +42,7 @@ function App() {
 
       <header className="site-header">
         <a className="brand" href="#home" aria-label="BNB home" onClick={closeMenu}>
-          <span className="brand-mark">B<span>N</span>B</span>
+          <img className="brand-logo" src="/brand/bnb-logo.svg" alt="" width="76" height="48" decoding="async" />
           <span className="brand-name">BOARD N BYTE</span>
         </a>
 
@@ -157,7 +157,7 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <div className="section-wrap footer-main"><a className="brand footer-brand" href="#home"><span className="brand-mark">B<span>N</span>B</span><span className="brand-name">BOARD N BYTE</span></a><p>Digital ideas. Real-world tech.<br />Built for what's next.</p><div className="footer-links"><a href="/services">Services</a><a href="#gallery">Design gallery</a><a href="#store">Store</a><a href="#contact">Contact</a></div><a className="back-top" href="#home">BACK TO TOP ↑</a></div>
+        <div className="section-wrap footer-main"><a className="brand footer-brand" href="#home"><img className="brand-logo" src="/brand/bnb-logo.svg" alt="" width="76" height="48" decoding="async" /><span className="brand-name">BOARD N BYTE</span></a><p>Digital ideas. Real-world tech.<br />Built for what's next.</p><div className="footer-links"><a href="/services">Services</a><a href="#gallery">Design gallery</a><a href="#store">Store</a><a href="#contact">Contact</a></div><a className="back-top" href="#home">BACK TO TOP ↑</a></div>
         <div className="section-wrap footer-bottom"><span>© {new Date().getFullYear()} BNB — BOARD N BYTE</span><span>MADE WITH INTENTION. <b>✳</b></span><span>INDIA</span></div>
       </footer>
     </div>

@@ -81,7 +81,7 @@ function ServicesPage() {
 
       <header className="site-header svc-header">
         <a className="brand" href="/" aria-label="BNB home">
-          <span className="brand-mark">B<span>N</span>B</span>
+          <img className="brand-logo" src="/brand/bnb-logo.svg" alt="" width="76" height="48" decoding="async" />
           <span className="brand-name">BOARD N BYTE</span>
         </a>
         <nav className="svc-top-nav" aria-label="Main navigation">
@@ -196,7 +196,7 @@ function ServicesPage() {
 
       <footer className="site-footer">
         <div className="section-wrap footer-main">
-          <a className="brand footer-brand" href="/"><span className="brand-mark">B<span>N</span>B</span><span className="brand-name">BOARD N BYTE</span></a>
+          <a className="brand footer-brand" href="/"><img className="brand-logo" src="/brand/bnb-logo.svg" alt="" width="76" height="48" decoding="async" /><span className="brand-name">BOARD N BYTE</span></a>
           <p>Digital ideas. Real-world tech.<br />Built for what's next.</p>
           <div className="footer-links"><a href="/">Home</a><a href="/services">Services</a><a href="/gallery">Design gallery</a><a href="/#store">Tech store</a></div>
           <a className="back-top" href="#top" onClick={(event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>BACK TO TOP ↑</a>

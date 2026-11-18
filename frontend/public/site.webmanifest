@@ -1,0 +1,17 @@
+{
+  "name": "BNB — Board N Byte",
+  "short_name": "BNB",
+  "description": "Digital Services and Tech Store",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f6f7f4",
+  "theme_color": "#16B98A",
+  "icons": [
+    {
+      "src": "/brand/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
