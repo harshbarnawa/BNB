@@ -12,7 +12,7 @@ export async function apiRequest(path, { method = 'GET', body, token } = {}) {
   }
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 15000);
+  const timeout = setTimeout(() => controller.abort(), 90000);
 
   try {
     const headers = { 'Content-Type': 'application/json' };
@@ -34,7 +34,7 @@ export async function apiRequest(path, { method = 'GET', body, token } = {}) {
     return payload;
   } catch (error) {
     if (error.name === 'AbortError') {
-      throw new Error('The request timed out. Please try again.');
+      throw new Error('The server did not respond in time. Please check whether your enquiry was received before trying again.');
     }
     if (error instanceof TypeError) {
       throw new Error('Could not connect to the BNB server. Please try again later.');
